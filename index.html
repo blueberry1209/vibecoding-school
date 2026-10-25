@@ -848,11 +848,11 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
     return groups;
   };
 
-  const createPage = (source) => {
+  const createPage = (source, sectionTitle) => {
     const page = document.createElement('section');
     page.className = 'book-page ' + source.className;
     page.dataset.sectionId = source.id || '';
-    page.dataset.sectionTitle = source.querySelector('h2')?.textContent?.trim() || '교재';
+    page.dataset.sectionTitle = sectionTitle;
     page.setAttribute('aria-label', page.dataset.sectionTitle);
     page.classList.add('is-measuring');
     const inner = document.createElement('div');
@@ -864,14 +864,15 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
 
   sourceSections.forEach(source => {
     const groups = makeGroups(source);
-    let current = createPage(source);
+    const sectionTitle = source.querySelector('h2')?.textContent?.trim() || '교재';
+    let current = createPage(source, sectionTitle);
     groups.forEach(group => {
       const previousCount = current.inner.children.length;
       group.forEach(node => current.inner.append(node));
       if (previousCount > 0 && current.inner.scrollHeight > current.inner.clientHeight + 2) {
         group.forEach(node => current.inner.removeChild(node));
         current.page.classList.remove('is-measuring');
-        current = createPage(source);
+        current = createPage(source, sectionTitle);
         group.forEach(node => current.inner.append(node));
       }
     });
