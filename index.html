@@ -16,12 +16,12 @@ main { height: 100%; min-height: 0; overflow: hidden; }
 .book-page .page-inner { height: 100%; min-height: 0; overflow: hidden; }
 .book-page .glossary-wrap { max-height: 100%; overflow: hidden; }
 .term-popover { min-width: 0; }
-.term-popover p, .term-popover small { min-width: 0; overflow-wrap: anywhere; }
+.term-popover p, .term-popover small { min-width: 0; display: block; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .practice-preview { margin: 18px 0; padding: 14px 16px; background: #E4F7F5; border-left: 6px solid var(--teal); border-radius: var(--r); min-width: 0; }
 .practice-preview b { display: block; color: var(--accent); font-size: .82rem; letter-spacing: .08em; }
 .practice-preview p { margin: 6px 0; color: var(--accent-dark); font-weight: 700; overflow-wrap: anywhere; }
 .practice-preview small { display: block; color: var(--accent-dark); overflow-wrap: anywhere; }
-.practice-preview code { padding: 2px 6px; background: #FFFFFF; border-radius: 6px; }
+.practice-preview code { display: inline-block; max-width: 100%; padding: 2px 6px; background: #FFFFFF; border-radius: 6px; overflow-wrap: anywhere; white-space: normal; }
 @media (max-width: 760px) { .book-page { padding: 16px 0 30px; } }
 @media print { html, body { height: auto; overflow: visible; } body { display: block; } .book-page, .book-page.is-active { display: block; height: auto; min-height: 0; overflow: visible; page-break-after: always; } .book-page .page-inner { height: auto; overflow: visible; } }
 </style></head><body><header><nav class="nav"><a href="#top">바이브코딩 실습 교재</a><a href="#lesson-1">01</a><a href="#lesson-2">02</a><a href="#lesson-3">03</a><a href="#lesson-4">04</a><a href="#lesson-5">05</a><a href="#lesson-6">06</a><a href="#lesson-7">07</a><a href="#lesson-8">08</a><a href="#lesson-9">09</a><a href="#lesson-10">10</a><a href="#lesson-11">11</a><a href="#lesson-12">12</a><a href="#lesson-13">13</a><a href="#lesson-14">14</a><a href="#lesson-15">15</a><a href="#lesson-16">16</a><a href="#lesson-17">17</a><a href="#lesson-18">18</a><a href="#lesson-19">19</a><a href="#lesson-20">20</a><a href="#lesson-21">21</a><a href="#lesson-22">22</a><a href="#lesson-23">23</a><a href="#lesson-24">24</a><a href="#glossary">용어 사전</a><a href="#appendix">부록</a></nav></header><main id="top"><section class="cover"><p class="eyebrow">AI · 디지털 교육 강사를 위한</p><h1>바이브코딩 실습 교재</h1><p>24차시 · 36시간 · 강사 개인 홈페이지 완성</p><p class="author-line">지은이: 최선희</p><div class="callout"><strong>최종 프로젝트</strong><br>강사 소개 · 강의 프로그램 · 실적 · 강의 문의 · GitHub API · AI API · GitHub/Vercel 배포</div></section>
@@ -43,7 +43,7 @@ git --version</code></pre>
         </section>
 <section id="lesson-2" class="lesson">
           <div class="lesson-kicker">차시 02</div><h2>프로젝트 폴더와 Git 시작</h2><p class="lead">작업 폴더를 만들고 Vite 프로젝트를 실행하며 첫 저장 지점을 만든다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</p><small>실행 코드 시작: <code>npm create vite@latest instructor-home -- --template vanilla</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
+          <div class="practice-preview"><b>실습 내용</b><p>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</p><small>실행 코드 시작: <code>npm create vite@latest instructor-home -- --templ…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
            <aside class="term-popover"><span>용어 미리보기</span><strong>package.json</strong><p>프로젝트 이름·의존성·실행 명령을 적는 설정 파일입니다.</p><small>실습 장면: Vite 개발 서버와 빌드 명령을 확인합니다. · 확인 질문: 새 라이브러리를 추가하면 어느 파일이 바뀌는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>프로젝트, npm, Git 저장소, 커밋</span></div><div><b>오늘의 비유</b><span>작업 폴더는 수업용 바인더이고, 커밋은 바인더에 꽂는 날짜별 복사본이다.</span></div><div><b>완료 기준</b><span>브라우저에서 Vite 기본 화면이 보이고, 프로젝트 폴더에 `src`, `index.html`, `package.json`이 있는지 확인한다.</span></div></div>
           <h3>실습 단계</h3><ol><li>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</li><li>`cd instructor-home`, `npm install`, `npm run dev` 순서로 실행한다.</li><li>다른 터미널에서 `git init`, `git add .`, `git commit -m &quot;chore: start project&quot;`를 실행한다.</li></ol>
@@ -113,7 +113,7 @@ npm run dev</code></pre>
         </section>
 <section id="lesson-6" class="lesson">
           <div class="lesson-kicker">차시 06</div><h2>SVG 아이콘과 접근성</h2><p class="lead">무거운 아이콘 라이브러리 없이 currentColor를 쓰는 24x24 SVG 아이콘을 직접 넣는다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>24x24 viewBox의 SVG 하나를 복사한다.</p><small>실행 코드 시작: <code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; aria-hidden=&quot;true&quot;&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
+          <div class="practice-preview"><b>실습 내용</b><p>24x24 viewBox의 SVG 하나를 복사한다.</p><small>실행 코드 시작: <code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;curr…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
            <aside class="term-popover"><span>용어 미리보기</span><strong>SVG</strong><p>선과 도형을 코드로 표현하는 확대 가능한 이미지 형식입니다.</p><small>실습 장면: 아이콘과 빈 상태 안내 그림을 외부 라이브러리 없이 넣습니다. · 확인 질문: SVG 색상을 currentColor로 연결하면 무엇이 좋아지는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>inline SVG, currentColor, aria-hidden, focus-visible</span></div><div><b>오늘의 비유</b><span>아이콘은 표지판이다. 같은 색을 따라가고, 표지판만으로 의미를 강요하지 않는다.</span></div><div><b>완료 기준</b><span>아이콘 색이 버튼 색과 함께 바뀌고 Tab 키로 버튼에 초점이 보이는지 확인한다.</span></div></div>
           <h3>실습 단계</h3><ol><li>24x24 viewBox의 SVG 하나를 복사한다.</li><li>stroke를 `currentColor`로 두고 버튼의 color를 상속받게 한다.</li><li>아이콘 옆에 텍스트를 두고 키보드 focus-visible 상태를 확인한다.</li></ol>
@@ -261,7 +261,7 @@ renderProjects(repositories.filter((repo) =&gt; !repo.fork));</code></pre>
         </section>
 <section id="lesson-15" class="lesson">
           <div class="lesson-kicker">차시 15</div><h2>Vercel 서버 함수와 안전한 API 프록시</h2><p class="lead">브라우저에 API 키를 노출하지 않고 Vercel Function에서 외부 AI API를 호출한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>`api/ask-ai.js` 파일을 만든다.</p><small>실행 코드 시작: <code>export default async function handler(request, response) {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
+          <div class="practice-preview"><b>실습 내용</b><p>`api/ask-ai.js` 파일을 만든다.</p><small>실행 코드 시작: <code>export default async function handler(request, re…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
            <aside class="term-popover"><span>용어 미리보기</span><strong>Serverless Function</strong><p>서버를 직접 관리하지 않고 필요할 때 실행되는 서버 코드입니다.</p><small>실습 장면: api/ask-ai.js와 api/contact.js가 Vercel에서 실행됩니다. · 확인 질문: 함수에서 검증해야 할 입력과 환경 변수는 무엇인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>serverless function, POST, environment variable, secret</span></div><div><b>오늘의 비유</b><span>교실 창구에서 신청서를 받고, 열쇠가 필요한 서류실 업무는 뒤에서 처리한다.</span></div><div><b>완료 기준</b><span>개발자 도구 Network 탭에서 요청 body에 API 키가 없고, 키가 없는 데모 모드도 오류 화면을 만들지 않는지 확인한다.</span></div></div>
           <h3>실습 단계</h3><ol><li>`api/ask-ai.js` 파일을 만든다.</li><li>POST body의 question을 검증한다.</li><li>`process.env.OPENAI_API_KEY`를 사용해 외부 API를 호출하고 답만 반환한다.</li></ol>
@@ -340,7 +340,7 @@ CONTACT_WEBHOOK_URL=
         </section>
 <section id="lesson-19" class="lesson">
           <div class="lesson-kicker">차시 19</div><h2>접근성·SEO·성능 기본기</h2><p class="lead">제목·메타 설명·키보드 초점·모션 감소와 이미지 대체 텍스트를 점검한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>title과 description을 실제 내용에 맞게 쓴다.</p><small>실행 코드 시작: <code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하는 강사 포트폴리오&quot; /&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
+          <div class="practice-preview"><b>실습 내용</b><p>title과 description을 실제 내용에 맞게 쓴다.</p><small>실행 코드 시작: <code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
            <aside class="term-popover"><span>용어 미리보기</span><strong>접근성</strong><p>장애와 기기 차이와 상관없이 사용할 수 있게 만드는 기준입니다.</p><small>실습 장면: 키보드 focus, label, alt, 대비, reduced motion을 점검합니다. · 확인 질문: 마우스 없이 Tab만으로 핵심 행동을 수행할 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>SEO meta, alt, focus-visible, reduced motion, semantic</span></div><div><b>오늘의 비유</b><span>안내 방송은 소리만으로 끝나지 않는다. 표지판·텍스트·동선이 함께 있어야 한다.</span></div><div><b>완료 기준</b><span>Tab 키만으로 모든 링크·폼에 도달하고, focus ring이 보이며, HTML 검사에서 label 누락이 없는지 확인한다.</span></div></div>
           <h3>실습 단계</h3><ol><li>title과 description을 실제 내용에 맞게 쓴다.</li><li>장식 SVG는 aria-hidden, 의미 있는 이미지는 alt를 쓴다.</li><li>Tab 이동과 prefers-reduced-motion을 확인한다.</li></ol>
