@@ -6,7 +6,8 @@ AI·디지털 교육 강사를 위한 24차시(총 36시간) 바이브코딩 실
 
 ## 온라인 교재
 
-- Vercel 배포 주소: 배포 완료 후 이 README에 연결합니다.
+- Vercel 배포: https://my-vibecoding-school-f39nq273m-sunhees-projects-26228867.vercel.app/
+- GitHub 저장소: https://github.com/blueberry1209/vibecoding-school
 - `index.html`: Pretendard 기반의 컬러 테마 HTML 교재
 - 24차시 실습, 실행 코드, 오류 해결, AI 협업 프롬프트, 차시별 용어 미리보기, 뒤쪽 기술용어사전을 포함합니다.
 
