@@ -21,7 +21,7 @@ main { width: 100%; max-width: 100%; padding: 0 20px; }
 .book-page.is-active { display: block; }
 .book-page .page-inner { height: 100%; min-height: 0; overflow: hidden; }
 .book-page .glossary-wrap { max-height: 100%; overflow: hidden; }
-.glossary-page.is-active { position: fixed; z-index: 8; top: 70px; bottom: 12px; left: 50%; transform: translateX(-50%); width: min(980px, calc(100vw - 24px)); max-width: calc(100vw - 24px); padding: 18px 20px; background: var(--sand); overflow: auto; box-shadow: 0 0 0 100vmax rgba(64,61,88,.22), 0 18px 50px rgba(64,61,88,.28); }
+.glossary-page.is-active { height: auto; min-height: 0; position: fixed; z-index: 8; top: 70px; bottom: 12px; left: 50%; transform: translateX(-50%); width: min(980px, calc(100vw - 24px)); max-width: calc(100vw - 24px); padding: 18px 20px; background: var(--sand); overflow: auto; box-shadow: 0 0 0 100vmax rgba(64,61,88,.22), 0 18px 50px rgba(64,61,88,.28); }
 .glossary-page.is-active .page-inner { height: auto; min-height: 100%; overflow: visible; }
 .glossary-page.is-active .glossary-wrap { max-height: none; overflow: auto; margin-top: 14px; }
 .glossary-page.is-active .glossary-table { min-width: 780px; font-size: .78rem; }
@@ -969,6 +969,13 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
 
   sourceSections.forEach(source => {
     const sectionTitle = source.querySelector('h2')?.textContent?.trim() || '교재';
+    if (source.id === 'glossary') {
+      const glossaryPage = createPage(source, sectionTitle);
+      [...source.children].forEach(node => glossaryPage.inner.append(node));
+      glossaryPage.page.classList.remove('is-measuring');
+      pages.push(glossaryPage.page);
+      return;
+    }
     if (source.classList.contains('lesson')) {
       const lessonPage = createPage(source, sectionTitle);
       [...source.children].forEach(node => lessonPage.inner.append(node));
