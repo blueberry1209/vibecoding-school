@@ -10,18 +10,18 @@ header { position: relative; top: auto; }
 .nav::-webkit-scrollbar { display: none; }
 main { height: 100%; min-height: 0; overflow: hidden; }
 #book-pages { height: 100%; min-height: 0; }
-.book-page { display: none; height: 100%; min-height: 0; padding: 28px 0 76px; border: 0; overflow: hidden; }
+.book-page { display: none; height: 100%; min-height: 0; padding: 28px 0 92px; border: 0; overflow: hidden; }
 .book-page.is-measuring { display: block; visibility: hidden; }
 .book-page.is-active { display: block; }
 .book-page .page-inner { height: 100%; min-height: 0; overflow: hidden; }
-.book-controls { position: fixed; z-index: 10; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; width: min(680px, calc(100% - 32px)); padding: 8px 10px; background: rgba(64,61,88,.96); border-radius: 12px; box-shadow: 0 10px 30px rgba(64,61,88,.18); color: #FFFFFF; }
-.book-controls button { min-height: 44px; padding: 0 16px; border: 1px solid rgba(255,255,255,.45); border-radius: 8px; background: transparent; color: #FFFFFF; font: inherit; font-weight: 800; cursor: pointer; }
+.book-controls { position: fixed; z-index: 10; left: 50%; bottom: 8px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; width: min(460px, calc(100% - 24px)); padding: 4px 6px; background: rgba(64,61,88,.98); border-radius: 10px; box-shadow: 0 8px 22px rgba(64,61,88,.18); color: #FFFFFF; }
+.book-controls button { min-height: 36px; padding: 0 11px; border: 1px solid rgba(255,255,255,.45); border-radius: 8px; background: transparent; color: #FFFFFF; font: inherit; font-size: .86rem; font-weight: 800; cursor: pointer; }
 .book-controls button:hover:not(:disabled), .book-controls button:focus-visible { background: var(--accent); outline: none; }
 .book-controls button:disabled { opacity: .42; cursor: not-allowed; }
-.book-progress { min-width: 72px; text-align: center; font-weight: 800; }
-.book-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #FFFFFF; font-size: .9rem; }
+.book-progress { min-width: 56px; text-align: center; font-size: .86rem; font-weight: 800; }
+.book-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #FFFFFF; font-size: .78rem; }
 .book-page .glossary-wrap { max-height: 100%; overflow: hidden; }
-@media (max-width: 760px) { .book-page { padding: 16px 0 76px; } .book-controls { gap: 6px; } .book-controls button { padding: 0 12px; } .book-title { display: none; } }
+@media (max-width: 760px) { .book-page { padding: 16px 0 88px; } .book-controls { gap: 4px; width: min(420px, calc(100% - 16px)); padding: 4px; } .book-controls button { min-height: 34px; padding: 0 9px; font-size: .82rem; } .book-progress { min-width: 50px; font-size: .82rem; } .book-title { display: none; } }
 @media print { html, body { height: auto; overflow: visible; } body { display: block; } .book-page, .book-page.is-active { display: block; height: auto; min-height: 0; overflow: visible; page-break-after: always; } .book-page .page-inner { height: auto; overflow: visible; } .book-controls { display: none; } }
 </style></head><body><header><nav class="nav"><a href="#top">바이브코딩 실습 교재</a><a href="#lesson-1">01</a><a href="#lesson-2">02</a><a href="#lesson-3">03</a><a href="#lesson-4">04</a><a href="#lesson-5">05</a><a href="#lesson-6">06</a><a href="#lesson-7">07</a><a href="#lesson-8">08</a><a href="#lesson-9">09</a><a href="#lesson-10">10</a><a href="#lesson-11">11</a><a href="#lesson-12">12</a><a href="#lesson-13">13</a><a href="#lesson-14">14</a><a href="#lesson-15">15</a><a href="#lesson-16">16</a><a href="#lesson-17">17</a><a href="#lesson-18">18</a><a href="#lesson-19">19</a><a href="#lesson-20">20</a><a href="#lesson-21">21</a><a href="#lesson-22">22</a><a href="#lesson-23">23</a><a href="#lesson-24">24</a><a href="#glossary">용어 사전</a><a href="#appendix">부록</a></nav></header><main id="top"><section class="cover"><p class="eyebrow">AI · 디지털 교육 강사를 위한</p><h1>바이브코딩 실습 교재</h1><p>24차시 · 36시간 · 강사 개인 홈페이지 완성</p><p class="author-line">지은이: 최선희</p><div class="callout"><strong>최종 프로젝트</strong><br>강사 소개 · 강의 프로그램 · 실적 · 강의 문의 · GitHub API · AI API · GitHub/Vercel 배포</div></section>
 <section><h2>이 교재를 사용하는 법</h2><p>이 책은 작은 화면 변화를 관찰하고 AI와 대화하며 다음 수정을 결정하는 실습서입니다. 각 차시는 설명 15분, 시연 15분, 따라 하기 35분, 점검과 확장 25분으로 운영합니다.</p><div class="info-grid"><div><b>학습 대상</b><span>코딩 경험이 적은 교사, 교육용 웹 결과물을 만들고 싶은 바이브코더</span></div><div><b>최종 산출물</b><span>강사 개인 홈페이지와 GitHub 저장소, Vercel 배포 URL</span></div><div><b>학습 규칙</b><span>실행 가능한 작은 변경 → 결과 확인 → 설명 → 커밋</span></div></div><div class="callout"><strong>AI 협업 원칙</strong><br>현재 파일, 기대 결과, 실제 오류, 바꾸고 싶지 않은 부분을 함께 알려 주고 결과를 직접 실행해 확인합니다.</div></section>
@@ -916,6 +916,11 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
     const targetIndex = target === 'top' ? 0 : target === 'appendix' ? pages.length - 1 : pages.findIndex(page => page.dataset.sectionId === target);
     if (targetIndex >= 0) showPage(targetIndex);
   }));
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => window.location.reload(), 220);
+  }, { passive: true });
   const initialTarget = location.hash.slice(1);
   const initialIndex = pages.findIndex(page => page.dataset.sectionId === initialTarget);
   showPage(initialIndex >= 0 ? initialIndex : 0, false);
