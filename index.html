@@ -2,6 +2,27 @@
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 디지털 교육 강사를 위한 바이브코딩 실습 교재</title>
 <style>
 :root{--sand:#F2EFEA;--paper:#FFFFFF;--charcoal:#403d58;--muted:#898989;--line:#D6D3CF;--accent:#FC7753;--accent-dark:#403D58;--teal:#66D7D1;--highlight:#DBD56E;--r:12px}*{box-sizing:border-box}body{margin:0;background:var(--sand);color:var(--charcoal);font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;font-size:1.05rem;line-height:1.82}header{position:sticky;top:0;z-index:4;background:rgba(242,239,234,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.nav{width:min(1180px,calc(100% - 40px));margin:auto;padding:14px 0;display:flex;gap:18px;align-items:center;overflow:auto;white-space:nowrap}.nav a{color:var(--muted);font-size:.88rem}.nav a:first-child{font-weight:800;color:var(--charcoal);margin-right:auto}main{width:min(980px,calc(100% - 40px));margin:auto}section{padding:76px 0;border-bottom:1px solid var(--line)}.cover{min-height:480px;display:grid;align-content:center}h1,h2,h3{font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.15;letter-spacing:-.03em;font-weight:800}h1{font-size:clamp(3rem,8vw,6rem);margin:0 0 18px}h2{font-size:clamp(2rem,5vw,3.8rem);margin:0 0 20px}h3{font-size:1.45rem;margin-top:36px}.eyebrow,.lesson-kicker{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}.lesson-kicker{display:inline-block;padding:8px 12px;background:var(--teal);color:#FFFFFF;border-radius:var(--r);margin-bottom:14px}.lesson h2{border-left:8px solid var(--accent);padding-left:16px}.lesson .lead{border-left:3px solid var(--teal);padding-left:12px}.lesson .info-grid>div:first-child{background:#E4F7F5}.term-popover{display:grid;gap:6px;margin:20px 0;padding:18px 20px;background:#E4F7F5;border-left:8px solid var(--teal);border-radius:var(--r)}.term-popover span{color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.term-popover strong{color:var(--accent-dark);font-size:1.25rem}.term-popover p,.term-popover small{margin:0;color:var(--accent-dark)}.lead{font-size:1.1rem;color:var(--muted)}.author-line{margin:10px 0 20px;color:var(--accent);font-weight:800;letter-spacing:.04em}.callout{margin:24px 0;padding:22px 24px;background:#FFF5D6;border:1px solid var(--accent);border-radius:var(--r)}.info-grid,.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}.info-grid>div,.roadmap>div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px}.info-grid b,.roadmap b{display:block;color:var(--accent);font-size:.82rem;margin-bottom:4px}.info-grid span,.roadmap span{display:block;color:var(--muted);font-size:.92rem}ol,ul{padding-left:22px}li{margin:10px 0}.code-head{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--charcoal);color:white;border-radius:var(--r) var(--r) 0 0;font-size:.85rem}pre{margin:0 0 20px;padding:16px;overflow:auto;background:#F2EFEA;border:1px solid var(--line);border-top:0;border-radius:0 0 var(--r) var(--r);font:13px/1.65 Consolas,monospace;white-space:pre-wrap}.copy-button{min-height:36px;padding:0 12px;border:1px solid rgba(255,255,255,.6);border-radius:8px;background:transparent;color:white;cursor:pointer}.copy-button:hover{background:rgba(255,255,255,.12)}table{width:100%;border-collapse:collapse;background:var(--paper);font-size:.98rem}th,td{padding:10px 12px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#FFF9DF;color:var(--accent-dark)}.glossary-wrap{overflow-x:auto;margin:26px 0}.glossary-table{min-width:900px}.glossary-table th:first-child{background:var(--teal);color:var(--accent-dark)}.glossary-table td:first-child{font-weight:800;background:#E4F7F5;color:var(--accent-dark)}details{margin:12px 0;border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}summary{padding:14px 16px;cursor:pointer;font-weight:800}details .code-head,details pre{margin-left:16px;margin-right:16px}details .code-head{margin-top:0}footer{width:min(980px,calc(100% - 40px));margin:auto;padding:26px 0;color:var(--muted);font-size:.9rem}@media(max-width:760px){.info-grid,.roadmap{grid-template-columns:1fr}section{padding:46px 0}}@media print{header{display:none}main{width:100%}section{break-before:page;padding:24px 0;border:0}.cover{break-before:auto}.copy-button{display:none}details{break-inside:avoid}}
+
+html, body { height: 100%; overflow: hidden; }
+body { min-height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; }
+header { position: relative; top: auto; }
+.nav { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+main { height: 100%; min-height: 0; overflow: hidden; }
+#book-pages { height: 100%; min-height: 0; }
+.book-page { display: none; height: 100%; min-height: 0; padding: 28px 0 76px; border: 0; overflow: hidden; }
+.book-page.is-measuring { display: block; visibility: hidden; }
+.book-page.is-active { display: block; }
+.book-page .page-inner { height: 100%; min-height: 0; overflow: hidden; }
+.book-controls { position: fixed; z-index: 10; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; width: min(680px, calc(100% - 32px)); padding: 8px 10px; background: rgba(64,61,88,.96); border-radius: 12px; box-shadow: 0 10px 30px rgba(64,61,88,.18); color: #FFFFFF; }
+.book-controls button { min-height: 44px; padding: 0 16px; border: 1px solid rgba(255,255,255,.45); border-radius: 8px; background: transparent; color: #FFFFFF; font: inherit; font-weight: 800; cursor: pointer; }
+.book-controls button:hover:not(:disabled), .book-controls button:focus-visible { background: var(--accent); outline: none; }
+.book-controls button:disabled { opacity: .42; cursor: not-allowed; }
+.book-progress { min-width: 72px; text-align: center; font-weight: 800; }
+.book-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #FFFFFF; font-size: .9rem; }
+.book-page .glossary-wrap { max-height: 100%; overflow: hidden; }
+@media (max-width: 760px) { .book-page { padding: 16px 0 76px; } .book-controls { gap: 6px; } .book-controls button { padding: 0 12px; } .book-title { display: none; } }
+@media print { html, body { height: auto; overflow: visible; } body { display: block; } .book-page, .book-page.is-active { display: block; height: auto; min-height: 0; overflow: visible; page-break-after: always; } .book-page .page-inner { height: auto; overflow: visible; } .book-controls { display: none; } }
 </style></head><body><header><nav class="nav"><a href="#top">바이브코딩 실습 교재</a><a href="#lesson-1">01</a><a href="#lesson-2">02</a><a href="#lesson-3">03</a><a href="#lesson-4">04</a><a href="#lesson-5">05</a><a href="#lesson-6">06</a><a href="#lesson-7">07</a><a href="#lesson-8">08</a><a href="#lesson-9">09</a><a href="#lesson-10">10</a><a href="#lesson-11">11</a><a href="#lesson-12">12</a><a href="#lesson-13">13</a><a href="#lesson-14">14</a><a href="#lesson-15">15</a><a href="#lesson-16">16</a><a href="#lesson-17">17</a><a href="#lesson-18">18</a><a href="#lesson-19">19</a><a href="#lesson-20">20</a><a href="#lesson-21">21</a><a href="#lesson-22">22</a><a href="#lesson-23">23</a><a href="#lesson-24">24</a><a href="#glossary">용어 사전</a><a href="#appendix">부록</a></nav></header><main id="top"><section class="cover"><p class="eyebrow">AI · 디지털 교육 강사를 위한</p><h1>바이브코딩 실습 교재</h1><p>24차시 · 36시간 · 강사 개인 홈페이지 완성</p><p class="author-line">지은이: 최선희</p><div class="callout"><strong>최종 프로젝트</strong><br>강사 소개 · 강의 프로그램 · 실적 · 강의 문의 · GitHub API · AI API · GitHub/Vercel 배포</div></section>
 <section><h2>이 교재를 사용하는 법</h2><p>이 책은 작은 화면 변화를 관찰하고 AI와 대화하며 다음 수정을 결정하는 실습서입니다. 각 차시는 설명 15분, 시연 15분, 따라 하기 35분, 점검과 확장 25분으로 운영합니다.</p><div class="info-grid"><div><b>학습 대상</b><span>코딩 경험이 적은 교사, 교육용 웹 결과물을 만들고 싶은 바이브코더</span></div><div><b>최종 산출물</b><span>강사 개인 홈페이지와 GitHub 저장소, Vercel 배포 URL</span></div><div><b>학습 규칙</b><span>실행 가능한 작은 변경 → 결과 확인 → 설명 → 커밋</span></div></div><div class="callout"><strong>AI 협업 원칙</strong><br>현재 파일, 기대 결과, 실제 오류, 바꾸고 싶지 않은 부분을 함께 알려 주고 결과를 직접 실행해 확인합니다.</div></section>
 <section><h2>24차시 로드맵</h2><div class="roadmap"><div><b>1–4차시</b><span>도구 준비·프로젝트·HTML·디자인 토큰</span></div><div><b>5–8차시</b><span>반응형·SVG·데이터 렌더링·내비게이션</span></div><div><b>9–12차시</b><span>히어로·프로그램·실적·문의 폼</span></div><div><b>13–16차시</b><span>비동기·GitHub API·서버 함수·AI UI</span></div><div><b>17–20차시</b><span>문의 API·환경 변수·접근성·QA</span></div><div><b>21–24차시</b><span>GitHub·Vercel·로그·발표</span></div></div></section>
@@ -766,4 +787,137 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
 </code></pre></details></section>
 <section><h2>부록 B · 배포 전 점검표</h2><div class="info-grid"><div><b>콘텐츠</b><span>강사 소개·프로그램·실적·문의 문장이 실제 대상과 맞는가</span></div><div><b>상호작용</b><span>CTA 44px 이상, loading·success·error 상태가 있는가</span></div><div><b>보안</b><span>API 키와 개인정보가 저장소와 화면에 없는가</span></div><div><b>배포</b><span>로컬 build·Preview·Production에서 흐름을 확인했는가</span></div></div></section>
 <section id="glossary"><h2>부록 C · 기술 용어 사전</h2><p>모르는 용어가 나오면 쉬운 뜻과 실제 파일·화면 장면을 함께 확인하세요.</p><div class="glossary-wrap"><table class="glossary-table"><thead><tr><th>용어</th><th>쉬운 뜻</th><th>실습에서 만나는 장면</th><th>확인 질문</th></tr></thead><tbody><tr><th>HTML</th><td>웹 페이지의 내용과 구조를 적는 언어입니다.</td><td>index.html에서 제목·문단·버튼·폼을 만듭니다.</td><td>문서의 내용과 구조를 담당하는 파일은 무엇인가?</td></tr><tr><th>CSS</th><td>색상, 글꼴, 여백, 배치를 정하는 스타일 규칙입니다.</td><td>src/style.css에서 팔레트와 반응형 레이아웃을 조정합니다.</td><td>카드의 색과 간격을 바꾸려면 어디를 수정하는가?</td></tr><tr><th>JavaScript</th><td>화면의 동작과 데이터 처리를 만드는 언어입니다.</td><td>src/main.js에서 클릭, 폼 제출, 카드 렌더링을 처리합니다.</td><td>사용자 행동에 반응하는 코드는 어느 파일에 있는가?</td></tr><tr><th>DOM</th><td>브라우저가 HTML을 객체 형태로 읽어 둔 화면 구조입니다.</td><td>querySelector로 버튼과 영역을 찾아 내용을 바꿉니다.</td><td>화면의 특정 요소를 찾는 코드는 무엇을 대상으로 하는가?</td></tr><tr><th>API</th><td>프로그램끼리 데이터를 주고받는 약속입니다.</td><td>GitHub 저장소 목록과 AI 답변을 요청할 때 사용합니다.</td><td>요청 주소와 보내는 데이터 형식을 어디서 확인하는가?</td></tr><tr><th>JSON</th><td>키와 값으로 데이터를 표현하는 텍스트 형식입니다.</td><td>GitHub API 응답과 폼 payload를 읽고 보낼 때 사용합니다.</td><td>응답에서 필요한 값은 어떤 키로 꺼내는가?</td></tr><tr><th>HTTP 상태 코드</th><td>요청이 성공했는지 실패했는지 알려 주는 숫자입니다.</td><td>200 성공, 400 입력 오류, 500 서버 오류를 구분합니다.</td><td>response.ok가 false일 때 어떤 안내를 보여 줄 것인가?</td></tr><tr><th>fetch</th><td>브라우저나 서버에서 네트워크 요청을 보내는 함수입니다.</td><td>GitHub·AI·문의 API에 GET 또는 POST 요청을 보냅니다.</td><td>요청 전후에 loading 상태를 어떻게 보여 주는가?</td></tr><tr><th>async/await</th><td>비동기 작업이 끝날 때까지 읽기 쉬운 순서로 기다리는 문법입니다.</td><td>fetch 결과를 받은 뒤 JSON을 읽고 화면에 표시합니다.</td><td>await가 빠지면 결과를 바로 사용할 수 있는가?</td></tr><tr><th>이벤트 리스너</th><td>클릭·입력·제출 같은 사건을 감지하는 연결 코드입니다.</td><td>addEventListener로 버튼과 폼에 동작을 연결합니다.</td><td>중복 클릭을 막기 위해 어떤 시점에 disabled를 설정하는가?</td></tr><tr><th>CSS 변수</th><td>색상이나 간격에 이름을 붙여 재사용하는 값입니다.</td><td>:root의 --accent와 --teal로 디자인을 한 곳에서 관리합니다.</td><td>한 색을 전체 사이트에서 바꾸려면 어디를 수정하는가?</td></tr><tr><th>반응형 웹</th><td>화면 폭에 따라 배치와 크기가 자연스럽게 바뀌는 설계입니다.</td><td>390·768·1280px에서 카드와 버튼이 깨지지 않는지 확인합니다.</td><td>모바일에서 가로 스크롤이 생기는 이유는 무엇인가?</td></tr><tr><th>SVG</th><td>선과 도형을 코드로 표현하는 확대 가능한 이미지 형식입니다.</td><td>아이콘과 빈 상태 안내 그림을 외부 라이브러리 없이 넣습니다.</td><td>SVG 색상을 currentColor로 연결하면 무엇이 좋아지는가?</td></tr><tr><th>시맨틱 HTML</th><td>태그의 의미에 맞게 구조를 작성하는 방식입니다.</td><td>header·main·section·form·button을 역할에 맞게 사용합니다.</td><td>div 대신 의미 있는 태그를 쓰면 누가 도움을 받는가?</td></tr><tr><th>접근성</th><td>장애와 기기 차이와 상관없이 사용할 수 있게 만드는 기준입니다.</td><td>키보드 focus, label, alt, 대비, reduced motion을 점검합니다.</td><td>마우스 없이 Tab만으로 핵심 행동을 수행할 수 있는가?</td></tr><tr><th>Skeleton UI</th><td>데이터가 오는 동안 실제 콘텐츠 모양을 미리 보여 주는 화면입니다.</td><td>GitHub 카드 로딩 중 빈 화면 대신 placeholder를 표시합니다.</td><td>로딩 중 사용자가 기다릴 이유를 어떻게 알려 주는가?</td></tr><tr><th>Empty state</th><td>데이터가 없을 때 상황과 다음 행동을 안내하는 화면입니다.</td><td>저장소가 없을 때 SVG와 문구를 보여 줍니다.</td><td>데이터가 없을 때 사용자가 할 수 있는 다음 행동은 무엇인가?</td></tr><tr><th>Loading 상태</th><td>요청이나 저장이 진행 중임을 알려 주는 상태입니다.</td><td>제출 버튼을 비활성화하고 저장 중 문구와 spinner를 표시합니다.</td><td>중복 클릭을 막고 진행 상태를 보여 주는가?</td></tr><tr><th>컴포넌트·카드</th><td>반복해서 사용하는 화면 조각과 정보 묶음입니다.</td><td>프로그램 카드와 실적 카드를 같은 구조로 렌더링합니다.</td><td>반복되는 UI를 한 규칙으로 관리할 수 있는가?</td></tr><tr><th>클라이언트·서버</th><td>클라이언트는 사용자 화면, 서버는 비밀값과 데이터 처리를 담당합니다.</td><td>브라우저는 질문을 보내고 서버 함수가 API 키를 사용합니다.</td><td>API 키를 브라우저 코드에 넣으면 안 되는 이유는 무엇인가?</td></tr><tr><th>Serverless Function</th><td>서버를 직접 관리하지 않고 필요할 때 실행되는 서버 코드입니다.</td><td>api/ask-ai.js와 api/contact.js가 Vercel에서 실행됩니다.</td><td>함수에서 검증해야 할 입력과 환경 변수는 무엇인가?</td></tr><tr><th>환경 변수</th><td>코드와 분리해 실행 환경에 저장하는 설정값입니다.</td><td>OPENAI_API_KEY와 CONTACT_WEBHOOK_URL을 Vercel에 저장합니다.</td><td>공개 저장소에 실제 값을 올리지 않으려면 어떻게 하는가?</td></tr><tr><th>API 키</th><td>외부 서비스가 요청자를 확인하기 위한 비밀 문자열입니다.</td><td>OpenAI 키는 서버 환경 변수에서만 읽습니다.</td><td>로그·스크린샷·GitHub에 키가 없는지 어떻게 확인하는가?</td></tr><tr><th>Git 저장소</th><td>파일 변화와 작업 이력을 저장하는 프로젝트 공간입니다.</td><td>instructor-home 폴더를 GitHub 원격 저장소에 연결합니다.</td><td>현재 변경 파일을 확인하는 명령은 무엇인가?</td></tr><tr><th>Commit</th><td>특정 시점의 변경 내용을 이름 붙여 저장하는 기록입니다.</td><td>작은 기능 단위로 feat·fix 커밋을 만듭니다.</td><td>커밋 메시지만 보고 무엇이 바뀌었는지 알 수 있는가?</td></tr><tr><th>Build</th><td>개발 파일을 배포 가능한 결과물로 변환하는 과정입니다.</td><td>npm run build가 dist 폴더를 생성하는지 확인합니다.</td><td>빌드 오류와 실행 중 오류를 어떻게 구분하는가?</td></tr><tr><th>Deploy</th><td>만든 웹 결과물을 인터넷 주소에서 사용할 수 있게 공개하는 과정입니다.</td><td>GitHub 저장소를 Vercel에 연결해 Preview와 Production을 만듭니다.</td><td>배포 후 어떤 URL과 로그를 확인해야 하는가?</td></tr><tr><th>npm</th><td>JavaScript 프로젝트의 패키지와 실행 명령을 관리하는 도구입니다.</td><td>npm install, npm run dev, npm run build를 실행합니다.</td><td>package.json의 scripts에는 어떤 명령이 있는가?</td></tr><tr><th>package.json</th><td>프로젝트 이름·의존성·실행 명령을 적는 설정 파일입니다.</td><td>Vite 개발 서버와 빌드 명령을 확인합니다.</td><td>새 라이브러리를 추가하면 어느 파일이 바뀌는가?</td></tr><tr><th>README</th><td>프로젝트의 목적과 설치·실행·배포 방법을 설명하는 문서입니다.</td><td>다른 사람이 저장소를 받아 바로 실행하도록 순서를 기록합니다.</td><td>처음 보는 사람이 실행할 정보가 모두 있는가?</td></tr><tr><th>CORS</th><td>서로 다른 출처의 브라우저 요청을 허용할지 정하는 보안 규칙입니다.</td><td>브라우저에서 외부 API를 호출할 때 오류 원인을 좁힙니다.</td><td>서버 프록시가 필요한 상황은 언제인가?</td></tr><tr><th>Webhook</th><td>한 서비스에서 일어난 일을 다른 주소로 전달하는 요청입니다.</td><td>문의 내용을 지정된 자동화 서비스로 전송합니다.</td><td>전달할 개인정보를 최소화했는가?</td></tr><tr><th>Prompt</th><td>AI에게 역할·상황·목표·제약·출력 형식을 전달하는 요청문입니다.</td><td>오류 수정과 개선을 차시별 프롬프트로 요청합니다.</td><td>기대 결과와 확인 방법을 프롬프트에 적었는가?</td></tr><tr><th>Fallback</th><td>주요 기능이 실패해도 보여 줄 안전한 대체 결과입니다.</td><td>API 키가 없어도 데모 응답과 안내 문구를 표시합니다.</td><td>외부 서비스가 실패해도 핵심 화면은 남아 있는가?</td></tr><tr><th>currentColor</th><td>현재 글자색을 SVG 선과 채움색에 물려주는 CSS 값입니다.</td><td>아이콘이 밝은 배경과 어두운 배경에 함께 대응합니다.</td><td>테마 색상을 바꾸었을 때 아이콘도 바뀌는가?</td></tr><tr><th>Vercel</th><td>GitHub 프로젝트를 연결해 웹과 서버 함수를 배포하는 서비스입니다.</td><td>Preview URL에서 수정 결과를 확인하고 Production으로 공개합니다.</td><td>환경 변수와 Build Command를 어디에서 설정하는가?</td></tr></tbody></table></div></section><div id="appendix"></div></main><footer>AI 디지털 교육 강사를 위한 24차시 실습 교재 · 복사 버튼은 브라우저에서 작동합니다.</footer>
-<script>document.querySelectorAll('.copy-button').forEach(button=>button.addEventListener('click',async()=>{const target=document.getElementById(button.dataset.copyTarget);try{await navigator.clipboard.writeText(target.innerText);button.textContent='복사됨';setTimeout(()=>button.textContent='복사',1200)}catch(error){button.textContent='직접 선택'}}));</script></body></html>
+<script>document.querySelectorAll('.copy-button').forEach(button=>button.addEventListener('click',async()=>{const target=document.getElementById(button.dataset.copyTarget);try{await navigator.clipboard.writeText(target.innerText);button.textContent='복사됨';setTimeout(()=>button.textContent='복사',1200)}catch(error){button.textContent='직접 선택'}}));</script>
+<div class="book-controls" aria-label="교재 페이지 이동">
+  <button id="book-prev" type="button">이전</button>
+  <span id="book-progress" class="book-progress" aria-live="polite">1 / 1</span>
+  <span id="book-title" class="book-title"></span>
+  <button id="book-next" type="button">다음</button>
+</div>
+<script>
+(() => {
+  const main = document.querySelector('main');
+  const sourceSections = [...main.querySelectorAll(':scope > section')];
+  if (!sourceSections.length) return;
+  const host = document.createElement('div');
+  host.id = 'book-pages';
+  main.replaceChildren(host);
+  const pages = [];
+
+  const cloneTableChunks = (table) => {
+    const rows = [...table.querySelectorAll('tbody > tr')];
+    if (rows.length <= 10) return [[table]];
+    const groups = [];
+    for (let start = 0; start < rows.length; start += 8) {
+      const chunk = table.cloneNode(false);
+      const head = table.querySelector('thead');
+      if (head) chunk.append(head.cloneNode(true));
+      const body = document.createElement('tbody');
+      rows.slice(start, start + 8).forEach(row => body.append(row.cloneNode(true)));
+      chunk.append(body);
+      groups.push([chunk]);
+    }
+    return groups;
+  };
+
+  const makeGroups = (section) => {
+    const nodes = [...section.children];
+    const groups = [];
+    for (let index = 0; index < nodes.length; index += 1) {
+      const node = nodes[index];
+      if (node.tagName === 'TABLE') {
+        groups.push(...cloneTableChunks(node));
+        continue;
+      }
+      const group = [node];
+      const next = nodes[index + 1];
+      const afterNext = nodes[index + 2];
+      if (node.tagName === 'H3' && next) {
+        group.push(next);
+        index += 1;
+        if (next.classList.contains('code-head') && afterNext?.tagName === 'PRE') {
+          group.push(afterNext);
+          index += 1;
+        }
+      } else if (node.classList.contains('code-head') && next?.tagName === 'PRE') {
+        group.push(next);
+        index += 1;
+      }
+      groups.push(group);
+    }
+    return groups;
+  };
+
+  const createPage = (source) => {
+    const page = document.createElement('section');
+    page.className = 'book-page ' + source.className;
+    page.dataset.sectionId = source.id || '';
+    page.dataset.sectionTitle = source.querySelector('h2')?.textContent?.trim() || '교재';
+    page.setAttribute('aria-label', page.dataset.sectionTitle);
+    page.classList.add('is-measuring');
+    const inner = document.createElement('div');
+    inner.className = 'page-inner';
+    page.append(inner);
+    host.append(page);
+    return { page, inner };
+  };
+
+  sourceSections.forEach(source => {
+    const groups = makeGroups(source);
+    let current = createPage(source);
+    groups.forEach(group => {
+      const previousCount = current.inner.children.length;
+      group.forEach(node => current.inner.append(node));
+      if (previousCount > 0 && current.inner.scrollHeight > current.inner.clientHeight + 2) {
+        group.forEach(node => current.inner.removeChild(node));
+        current.page.classList.remove('is-measuring');
+        current = createPage(source);
+        group.forEach(node => current.inner.append(node));
+      }
+    });
+    current.page.classList.remove('is-measuring');
+    pages.push(...[...host.querySelectorAll('.book-page')].filter(page => !pages.includes(page)));
+  });
+
+  const previous = document.getElementById('book-prev');
+  const next = document.getElementById('book-next');
+  const progress = document.getElementById('book-progress');
+  const title = document.getElementById('book-title');
+  let currentIndex = 0;
+  const showPage = (index, updateHash = true) => {
+    currentIndex = Math.max(0, Math.min(index, pages.length - 1));
+    pages.forEach((page, pageIndex) => {
+      page.classList.toggle('is-active', pageIndex === currentIndex);
+      page.setAttribute('aria-hidden', pageIndex === currentIndex ? 'false' : 'true');
+    });
+    previous.disabled = currentIndex === 0;
+    next.disabled = currentIndex === pages.length - 1;
+    progress.textContent = (currentIndex + 1) + ' / ' + pages.length;
+    title.textContent = pages[currentIndex]?.dataset.sectionTitle || '교재';
+    if (updateHash) {
+      const sectionId = pages[currentIndex]?.dataset.sectionId;
+      if (sectionId) history.replaceState(null, '', '#' + sectionId);
+    }
+  };
+  previous.addEventListener('click', () => showPage(currentIndex - 1));
+  next.addEventListener('click', () => showPage(currentIndex + 1));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') showPage(currentIndex - 1);
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+      if (event.key === ' ') event.preventDefault();
+      showPage(currentIndex + 1);
+    }
+  });
+  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', event => {
+    const target = link.getAttribute('href')?.slice(1);
+    if (!target) return;
+    event.preventDefault();
+    const targetIndex = target === 'top' ? 0 : target === 'appendix' ? pages.length - 1 : pages.findIndex(page => page.dataset.sectionId === target);
+    if (targetIndex >= 0) showPage(targetIndex);
+  }));
+  const initialTarget = location.hash.slice(1);
+  const initialIndex = pages.findIndex(page => page.dataset.sectionId === initialTarget);
+  showPage(initialIndex >= 0 ? initialIndex : 0, false);
+})();
+</script>
+</body></html>
