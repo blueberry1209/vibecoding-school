@@ -26,6 +26,30 @@ main { width: 100%; max-width: 980px; padding: 0 20px; }
 .practice-preview p { margin: 6px 0; color: var(--accent-dark); font-weight: 700; overflow-wrap: anywhere; }
 .practice-preview small { display: block; color: var(--accent-dark); overflow-wrap: anywhere; }
 .practice-preview code { display: inline-block; max-width: 100%; padding: 2px 6px; background: #FFFFFF; border-radius: 6px; overflow-wrap: anywhere; white-space: normal; }
+.lesson { padding-top: 18px; }
+.lesson h2 { font-size: clamp(1.8rem, 4.6vw, 3rem); margin-bottom: 10px; }
+.lesson .lead { margin: 8px 0; font-size: .98rem; }
+.lesson .practice-preview, .lesson .term-popover { margin: 10px 0; padding: 12px 14px; }
+.lesson .term-popover strong { font-size: 1.05rem; }
+.lesson .term-popover small { font-size: .78rem; }
+.lesson .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+.lesson .info-grid > div { padding: 10px; }
+.lesson .info-grid span { font-size: .78rem; line-height: 1.45; }
+.lesson-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.lesson-chips span { padding: 5px 9px; border-radius: 999px; background: #FFF9DF; border: 1px solid var(--highlight); font-size: .75rem; font-weight: 800; }
+.lesson-chips span:nth-child(2) { background: #E4F7F5; border-color: var(--teal); }
+.lesson-accordions { display: grid; gap: 7px; margin-top: 10px; }
+.lesson-toggle { margin: 0; border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: 8px; background: #FFFFFF; }
+.lesson-toggle summary { list-style: none; padding: 10px 12px; font-size: .88rem; color: var(--accent-dark); }
+.lesson-toggle summary::-webkit-details-marker { display: none; }
+.lesson-toggle summary::after { content: '+'; float: right; color: var(--accent); font-size: 1.1rem; }
+.lesson-toggle[open] summary::after { content: '−'; }
+.lesson-toggle[open] { border-left-color: var(--teal); }
+.lesson-toggle > ol, .lesson-toggle > ul, .lesson-toggle > table, .lesson-toggle > .code-head, .lesson-toggle > pre, .lesson-toggle > .callout { margin-left: 12px; margin-right: 12px; }
+.lesson-toggle > ol, .lesson-toggle > ul { margin-top: 8px; margin-bottom: 8px; font-size: .88rem; line-height: 1.5; }
+.lesson-toggle .code-head { margin-top: 8px; }
+.lesson-toggle .callout { padding: 12px 14px; margin-top: 12px; margin-bottom: 12px; }
+
 @media (max-width: 760px) { .book-page { padding: 16px 0 30px; } }
 @media print { html, body { height: auto; overflow: visible; } body { display: block; } .book-page, .book-page.is-active { display: block; height: auto; min-height: 0; overflow: visible; page-break-after: always; } .book-page .page-inner { height: auto; overflow: visible; } }
 </style></head><body><header><nav class="nav"><a href="#top">바이브코딩 실습 교재</a><a href="#lesson-1">01</a><a href="#lesson-2">02</a><a href="#lesson-3">03</a><a href="#lesson-4">04</a><a href="#lesson-5">05</a><a href="#lesson-6">06</a><a href="#lesson-7">07</a><a href="#lesson-8">08</a><a href="#lesson-9">09</a><a href="#lesson-10">10</a><a href="#lesson-11">11</a><a href="#lesson-12">12</a><a href="#lesson-13">13</a><a href="#lesson-14">14</a><a href="#lesson-15">15</a><a href="#lesson-16">16</a><a href="#lesson-17">17</a><a href="#lesson-18">18</a><a href="#lesson-19">19</a><a href="#lesson-20">20</a><a href="#lesson-21">21</a><a href="#lesson-22">22</a><a href="#lesson-23">23</a><a href="#lesson-24">24</a><a href="#glossary">용어 사전</a><a href="#appendix">부록</a></nav></header><main id="top"><section class="cover"><p class="eyebrow">AI · 디지털 교육 강사를 위한</p><h1>바이브코딩 실습 교재</h1><p>24차시 · 36시간 · 강사 개인 홈페이지 완성</p><p class="author-line">지은이: 최선희</p><div class="callout"><strong>최종 프로젝트</strong><br>강사 소개 · 강의 프로그램 · 실적 · 강의 문의 · GitHub API · AI API · GitHub/Vercel 배포</div></section>
@@ -33,205 +57,218 @@ main { width: 100%; max-width: 980px; padding: 0 20px; }
 <section><h2>24차시 로드맵</h2><div class="roadmap"><div><b>1–4차시</b><span>도구 준비·프로젝트·HTML·디자인 토큰</span></div><div><b>5–8차시</b><span>반응형·SVG·데이터 렌더링·내비게이션</span></div><div><b>9–12차시</b><span>히어로·프로그램·실적·문의 폼</span></div><div><b>13–16차시</b><span>비동기·GitHub API·서버 함수·AI UI</span></div><div><b>17–20차시</b><span>문의 API·환경 변수·접근성·QA</span></div><div><b>21–24차시</b><span>GitHub·Vercel·로그·발표</span></div></div></section>
 <section id="lesson-1" class="lesson">
           <div class="lesson-kicker">차시 01</div><h2>출발점과 도구 준비</h2><p class="lead">24차시의 결과물과 작업 순서를 이해하고 Windows 개발 환경을 확인한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>Chrome에서 VS Code 설치 페이지와 Node.js LTS 설치 페이지를 확인한다.</p><small>실행 코드 시작: <code>node -v</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>npm</strong><p>JavaScript 프로젝트의 패키지와 실행 명령을 관리하는 도구입니다.</p><small>실습 장면: npm install, npm run dev, npm run build를 실행합니다. · 확인 질문: package.json의 scripts에는 어떤 명령이 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>Chrome에서 VS Code 설치 페이지와 Node.js LTS 설치 페이지를 확인한다.</p><small>실행 코드 시작: <code>node -v</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>npm</strong><p>JavaScript 프로젝트의 패키지와 실행 명령을 관리하는 도구입니다.</p><small>실습 장면: npm install, npm run dev, npm run build를 실행합니다. · 확인 질문: package.json의 scripts에는 어떤 명령이 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>바이브코딩, 브라우저, 터미널, 편집기</span></div><div><b>오늘의 비유</b><span>요리 전에 도마와 칼을 꺼내듯, 코딩도 도구를 먼저 한자리에 둔다.</span></div><div><b>완료 기준</b><span>세 명령 모두 버전 숫자를 출력하고, VS Code의 터미널에서 같은 결과가 나오는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>Chrome에서 VS Code 설치 페이지와 Node.js LTS 설치 페이지를 확인한다.</li><li>PowerShell을 열고 `node -v`, `npm -v`, `git --version`을 차례로 실행한다.</li><li>VS Code에서 폴더를 하나 열고 통합 터미널을 켠다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-1">복사</button></div><pre id="lesson-code-1"><code>node -v
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>Chrome에서 VS Code 설치 페이지와 Node.js LTS 설치 페이지를 확인한다.</li><li>PowerShell을 열고 `node -v`, `npm -v`, `git --version`을 차례로 실행한다.</li><li>VS Code에서 폴더를 하나 열고 통합 터미널을 켠다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-1">복사</button></div><pre id="lesson-code-1"><code>node -v
 npm -v
-git --version</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>버전 명령은 설치 여부를 묻는 가장 짧은 진단이다. 숫자가 출력되면 해당 도구를 호출할 수 있다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>명령을 찾을 수 없음</th><td>Node.js 또는 Git을 다시 설치한 뒤 PowerShell을 새로 연다.</td></tr><tr><th>npm 실행 정책 오류</th><td>`npm.cmd`로 실행하거나 현재 PowerShell 창에서만 실행 정책을 조정한다.</td></tr><tr><th>한글 경로 문제</th><td>처음 프로젝트는 영문 폴더명으로 만들어 경로 변수를 줄인다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-1">복사</button></div><pre id="lesson-prompt-1"><code>초보 교사를 위한 바이브코딩 첫날 안내를 작성해 줘. 준비물, 확인 명령, 흔한 Windows 오류를 표로 정리하고 학생에게 말하듯 설명해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>자신의 수업 환경에 맞춘 1쪽 준비 체크리스트를 만든다.</li><li>컴퓨터실 수업이라면 설치가 어려운 학생에게 미리 압축 파일과 브라우저 기반 대안을 안내한다.</li></ul>
+git --version</code></pre><div class="callout"><strong>코드 해설</strong><br>버전 명령은 설치 여부를 묻는 가장 짧은 진단이다. 숫자가 출력되면 해당 도구를 호출할 수 있다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>명령을 찾을 수 없음</th><td>Node.js 또는 Git을 다시 설치한 뒤 PowerShell을 새로 연다.</td></tr><tr><th>npm 실행 정책 오류</th><td>`npm.cmd`로 실행하거나 현재 PowerShell 창에서만 실행 정책을 조정한다.</td></tr><tr><th>한글 경로 문제</th><td>처음 프로젝트는 영문 폴더명으로 만들어 경로 변수를 줄인다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-1">복사</button></div><pre id="lesson-prompt-1"><code>초보 교사를 위한 바이브코딩 첫날 안내를 작성해 줘. 준비물, 확인 명령, 흔한 Windows 오류를 표로 정리하고 학생에게 말하듯 설명해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>자신의 수업 환경에 맞춘 1쪽 준비 체크리스트를 만든다.</li><li>컴퓨터실 수업이라면 설치가 어려운 학생에게 미리 압축 파일과 브라우저 기반 대안을 안내한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-2" class="lesson">
           <div class="lesson-kicker">차시 02</div><h2>프로젝트 폴더와 Git 시작</h2><p class="lead">작업 폴더를 만들고 Vite 프로젝트를 실행하며 첫 저장 지점을 만든다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</p><small>실행 코드 시작: <code>npm create vite@latest instructor-home -- --templ…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>package.json</strong><p>프로젝트 이름·의존성·실행 명령을 적는 설정 파일입니다.</p><small>실습 장면: Vite 개발 서버와 빌드 명령을 확인합니다. · 확인 질문: 새 라이브러리를 추가하면 어느 파일이 바뀌는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</p><small>실행 코드 시작: <code>npm create vite@latest instructor-home -- --templ…</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>package.json</strong><p>프로젝트 이름·의존성·실행 명령을 적는 설정 파일입니다.</p><small>실습 장면: Vite 개발 서버와 빌드 명령을 확인합니다. · 확인 질문: 새 라이브러리를 추가하면 어느 파일이 바뀌는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>프로젝트, npm, Git 저장소, 커밋</span></div><div><b>오늘의 비유</b><span>작업 폴더는 수업용 바인더이고, 커밋은 바인더에 꽂는 날짜별 복사본이다.</span></div><div><b>완료 기준</b><span>브라우저에서 Vite 기본 화면이 보이고, 프로젝트 폴더에 `src`, `index.html`, `package.json`이 있는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</li><li>`cd instructor-home`, `npm install`, `npm run dev` 순서로 실행한다.</li><li>다른 터미널에서 `git init`, `git add .`, `git commit -m &quot;chore: start project&quot;`를 실행한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-2">복사</button></div><pre id="lesson-code-2"><code>npm create vite@latest instructor-home -- --template vanilla
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>PowerShell에서 `npm create vite@latest instructor-home -- --template vanilla`를 실행한다.</li><li>`cd instructor-home`, `npm install`, `npm run dev` 순서로 실행한다.</li><li>다른 터미널에서 `git init`, `git add .`, `git commit -m &quot;chore: start project&quot;`를 실행한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-2">복사</button></div><pre id="lesson-code-2"><code>npm create vite@latest instructor-home -- --template vanilla
 cd instructor-home
 npm install
-npm run dev</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>Vite는 개발 서버와 기본 파일을 만들어 주고, Git은 변경 이력을 저장할 준비를 한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>npm create가 멈춤</th><td>커서가 입력을 기다리는지 확인하고 안내 질문에 기본값으로 응답한다.</td></tr><tr><th>포트 사용 중</th><td>터미널이 제시한 다른 포트 주소를 열거나 기존 개발 서버를 종료한다.</td></tr><tr><th>git은 내부 또는 외부 명령이 아님</th><td>Git 설치 후 VS Code와 PowerShell을 다시 시작한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-2">복사</button></div><pre id="lesson-prompt-2"><code>학생이 폴더와 Git을 처음 만지는 장면을 비유로 설명해 줘. 반드시 복사할 PowerShell 명령과 각 명령의 확인 결과를 함께 써 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>`README.md`에 오늘 실행한 명령과 확인 결과를 기록한다.</li><li>실습 중 중요한 순간마다 커밋을 남기는 ‘중간 저장’ 규칙을 만든다.</li></ul>
+npm run dev</code></pre><div class="callout"><strong>코드 해설</strong><br>Vite는 개발 서버와 기본 파일을 만들어 주고, Git은 변경 이력을 저장할 준비를 한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>npm create가 멈춤</th><td>커서가 입력을 기다리는지 확인하고 안내 질문에 기본값으로 응답한다.</td></tr><tr><th>포트 사용 중</th><td>터미널이 제시한 다른 포트 주소를 열거나 기존 개발 서버를 종료한다.</td></tr><tr><th>git은 내부 또는 외부 명령이 아님</th><td>Git 설치 후 VS Code와 PowerShell을 다시 시작한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-2">복사</button></div><pre id="lesson-prompt-2"><code>학생이 폴더와 Git을 처음 만지는 장면을 비유로 설명해 줘. 반드시 복사할 PowerShell 명령과 각 명령의 확인 결과를 함께 써 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>`README.md`에 오늘 실행한 명령과 확인 결과를 기록한다.</li><li>실습 중 중요한 순간마다 커밋을 남기는 ‘중간 저장’ 규칙을 만든다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-3" class="lesson">
           <div class="lesson-kicker">차시 03</div><h2>HTML 뼈대와 의미 있는 구조</h2><p class="lead">페이지를 소개, 프로그램, 실적, 문의 영역으로 나누고 시맨틱 HTML을 사용한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>VS Code에서 `index.html`을 열고 `lang=&quot;ko&quot;`와 제목을 확인한다.</p><small>실행 코드 시작: <code>&lt;main&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>HTML</strong><p>웹 페이지의 내용과 구조를 적는 언어입니다.</p><small>실습 장면: index.html에서 제목·문단·버튼·폼을 만듭니다. · 확인 질문: 문서의 내용과 구조를 담당하는 파일은 무엇인가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>VS Code에서 `index.html`을 열고 `lang=&quot;ko&quot;`와 제목을 확인한다.</p><small>실행 코드 시작: <code>&lt;main&gt;</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>HTML</strong><p>웹 페이지의 내용과 구조를 적는 언어입니다.</p><small>실습 장면: index.html에서 제목·문단·버튼·폼을 만듭니다. · 확인 질문: 문서의 내용과 구조를 담당하는 파일은 무엇인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>HTML 요소, section, heading, nav, form</span></div><div><b>오늘의 비유</b><span>HTML은 교실의 좌석 배치도다. 같은 목적의 활동이 어디에 놓였는지 먼저 읽힌다.</span></div><div><b>완료 기준</b><span>브라우저에서 ‘강사 소개’가 보이고 주소 뒤에 `#about`을 붙였을 때 해당 영역으로 이동한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>VS Code에서 `index.html`을 열고 `lang=&quot;ko&quot;`와 제목을 확인한다.</li><li>`header`, `main`, `section`, `footer`를 배치한다.</li><li>각 section에 한 개의 h2와 짧은 설명을 추가하고 저장한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-3">복사</button></div><pre id="lesson-code-3"><code>&lt;main&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>VS Code에서 `index.html`을 열고 `lang=&quot;ko&quot;`와 제목을 확인한다.</li><li>`header`, `main`, `section`, `footer`를 배치한다.</li><li>각 section에 한 개의 h2와 짧은 설명을 추가하고 저장한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-3">복사</button></div><pre id="lesson-code-3"><code>&lt;main&gt;
   &lt;section id=&quot;about&quot; aria-labelledby=&quot;about-title&quot;&gt;
     &lt;h2 id=&quot;about-title&quot;&gt;강사 소개&lt;/h2&gt;
     &lt;p&gt;교실의 질문을 작동하는 경험으로 바꿉니다.&lt;/p&gt;
   &lt;/section&gt;
-&lt;/main&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>id는 링크와 JavaScript가 찾을 주소이고, aria-labelledby는 보조공학에 section의 제목을 알려 준다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>화면에 태그가 글자로 보임</th><td>태그를 `index.html` 안에 넣었는지, `.txt` 확장자가 아닌지 확인한다.</td></tr><tr><th>링크가 이동하지 않음</th><td>href의 `#about`과 section의 id 철자가 같은지 비교한다.</td></tr><tr><th>제목 계층이 어색함</th><td>페이지 제목은 h1 하나, 주요 영역은 h2로 정리한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-3">복사</button></div><pre id="lesson-prompt-3"><code>학생에게 시맨틱 HTML을 ‘교실 배치도’로 설명하고, 강사 홈페이지에 필요한 4개 section을 설계하게 하는 활동지를 만들어 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>프로그램 카드 하나를 `article`로 바꾸어 반복 콘텐츠의 단위를 분명히 한다.</li><li>문의 form에 label을 연결해 키보드와 스크린리더가 입력 목적을 알 수 있게 한다.</li></ul>
+&lt;/main&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>id는 링크와 JavaScript가 찾을 주소이고, aria-labelledby는 보조공학에 section의 제목을 알려 준다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>화면에 태그가 글자로 보임</th><td>태그를 `index.html` 안에 넣었는지, `.txt` 확장자가 아닌지 확인한다.</td></tr><tr><th>링크가 이동하지 않음</th><td>href의 `#about`과 section의 id 철자가 같은지 비교한다.</td></tr><tr><th>제목 계층이 어색함</th><td>페이지 제목은 h1 하나, 주요 영역은 h2로 정리한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-3">복사</button></div><pre id="lesson-prompt-3"><code>학생에게 시맨틱 HTML을 ‘교실 배치도’로 설명하고, 강사 홈페이지에 필요한 4개 section을 설계하게 하는 활동지를 만들어 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>프로그램 카드 하나를 `article`로 바꾸어 반복 콘텐츠의 단위를 분명히 한다.</li><li>문의 form에 label을 연결해 키보드와 스크린리더가 입력 목적을 알 수 있게 한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-4" class="lesson">
           <div class="lesson-kicker">차시 04</div><h2>색상 토큰과 카드 스타일</h2><p class="lead">교실 환경에 맞는 코랄·아쿠아·빈티지 그레이프·페일 앰버 색상 토큰을 만들고 반복 스타일을 줄인다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>`src/style.css`에 `:root` 변수를 만든다.</p><small>실행 코드 시작: <code>:root {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>CSS</strong><p>색상, 글꼴, 여백, 배치를 정하는 스타일 규칙입니다.</p><small>실습 장면: src/style.css에서 팔레트와 반응형 레이아웃을 조정합니다. · 확인 질문: 카드의 색과 간격을 바꾸려면 어디를 수정하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>`src/style.css`에 `:root` 변수를 만든다.</p><small>실행 코드 시작: <code>:root {</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>CSS</strong><p>색상, 글꼴, 여백, 배치를 정하는 스타일 규칙입니다.</p><small>실습 장면: src/style.css에서 팔레트와 반응형 레이아웃을 조정합니다. · 확인 질문: 카드의 색과 간격을 바꾸려면 어디를 수정하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>CSS 변수, 색상 대비, border-radius, spacing</span></div><div><b>오늘의 비유</b><span>토큰은 미술 시간의 색상표다. 이름을 붙여 두면 같은 색을 다시 찾기 쉽다.</span></div><div><b>완료 기준</b><span>파치먼트 배경 위에서 빈티지 그레이프 글자가 읽히며, 카드 모서리가 12px로 보이는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>`src/style.css`에 `:root` 변수를 만든다.</li><li>body, card, button에 변수를 적용한다.</li><li>브라우저에서 배경과 본문 대비를 확인하고 한 가지 모서리 값으로 통일한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-4">복사</button></div><pre id="lesson-code-4"><code>:root {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>`src/style.css`에 `:root` 변수를 만든다.</li><li>body, card, button에 변수를 적용한다.</li><li>브라우저에서 배경과 본문 대비를 확인하고 한 가지 모서리 값으로 통일한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-4">복사</button></div><pre id="lesson-code-4"><code>:root {
   --sand: #F2EFEA;
   --charcoal: #403d58;
   --accent: #FC7753;
   --radius-card: 12px;
   --space-medium: 24px;
 }
-.card { border-radius: var(--radius-card); background: #FFFFFF; }</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>변수는 이름을 가진 값이다. 디자인을 바꿀 때 여러 선택자를 찾아다니지 않고 변수 한 곳을 바꾼다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>변수가 적용되지 않음</th><td>변수 이름 앞에 `--`가 있는지, 사용하는 곳에 `var()`가 있는지 확인한다.</td></tr><tr><th>글자가 흐림</th><td>배경과 글자 대비를 높이고 본문 글자 크기를 16px 이상으로 둔다.</td></tr><tr><th>카드가 검게 보임</th><td>배경 선언이 유효한 hex 값인지 확인하고 브라우저를 새로 고친다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-4">복사</button></div><pre id="lesson-prompt-4"><code>파치먼트 배경과 빈티지 그레이프 본문, 코랄·아쿠아 포인트를 쓰는 교육용 홈페이지의 CSS 토큰을 설계하고, 각 토큰이 쓰이는 위치를 설명해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>학교 브랜드 색을 포인트 색으로 바꾸되 본문 대비와 버튼의 가독성을 먼저 검사한다.</li><li>다크 모드를 추가할 때도 변수만 교체해 본문 구조를 유지한다.</li></ul>
+.card { border-radius: var(--radius-card); background: #FFFFFF; }</code></pre><div class="callout"><strong>코드 해설</strong><br>변수는 이름을 가진 값이다. 디자인을 바꿀 때 여러 선택자를 찾아다니지 않고 변수 한 곳을 바꾼다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>변수가 적용되지 않음</th><td>변수 이름 앞에 `--`가 있는지, 사용하는 곳에 `var()`가 있는지 확인한다.</td></tr><tr><th>글자가 흐림</th><td>배경과 글자 대비를 높이고 본문 글자 크기를 16px 이상으로 둔다.</td></tr><tr><th>카드가 검게 보임</th><td>배경 선언이 유효한 hex 값인지 확인하고 브라우저를 새로 고친다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-4">복사</button></div><pre id="lesson-prompt-4"><code>파치먼트 배경과 빈티지 그레이프 본문, 코랄·아쿠아 포인트를 쓰는 교육용 홈페이지의 CSS 토큰을 설계하고, 각 토큰이 쓰이는 위치를 설명해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>학교 브랜드 색을 포인트 색으로 바꾸되 본문 대비와 버튼의 가독성을 먼저 검사한다.</li><li>다크 모드를 추가할 때도 변수만 교체해 본문 구조를 유지한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-5" class="lesson">
           <div class="lesson-kicker">차시 05</div><h2>반응형 레이아웃</h2><p class="lead">프로젝터·크롬북·태블릿 화면에서 같은 콘텐츠가 자연스럽게 흐르도록 Grid와 미디어 쿼리를 사용한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>프로그램 카드 영역을 3열 Grid로 만든다.</p><small>실행 코드 시작: <code>.card-grid {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>반응형 웹</strong><p>화면 폭에 따라 배치와 크기가 자연스럽게 바뀌는 설계입니다.</p><small>실습 장면: 390·768·1280px에서 카드와 버튼이 깨지지 않는지 확인합니다. · 확인 질문: 모바일에서 가로 스크롤이 생기는 이유는 무엇인가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>프로그램 카드 영역을 3열 Grid로 만든다.</p><small>실행 코드 시작: <code>.card-grid {</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>반응형 웹</strong><p>화면 폭에 따라 배치와 크기가 자연스럽게 바뀌는 설계입니다.</p><small>실습 장면: 390·768·1280px에서 카드와 버튼이 깨지지 않는지 확인합니다. · 확인 질문: 모바일에서 가로 스크롤이 생기는 이유는 무엇인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>CSS Grid, Flexbox, breakpoint, minmax</span></div><div><b>오늘의 비유</b><span>책상을 접었다 펴는 것처럼, 작은 화면에서는 열을 줄이고 간격을 다시 배치한다.</span></div><div><b>완료 기준</b><span>세 화면 크기에서 가로 스크롤이 없고 카드 순서가 자연스러운지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>프로그램 카드 영역을 3열 Grid로 만든다.</li><li>800px 이하에서 1열로 바꾸고 navigation을 줄인다.</li><li>Chrome 개발자 도구의 기기 모드에서 390px, 768px, 1280px을 확인한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-5">복사</button></div><pre id="lesson-code-5"><code>.card-grid {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>프로그램 카드 영역을 3열 Grid로 만든다.</li><li>800px 이하에서 1열로 바꾸고 navigation을 줄인다.</li><li>Chrome 개발자 도구의 기기 모드에서 390px, 768px, 1280px을 확인한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-5">복사</button></div><pre id="lesson-code-5"><code>.card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 @media (max-width: 800px) {
   .card-grid { grid-template-columns: 1fr; }
-}</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>Grid는 같은 폭의 반복 콘텐츠에 적합하다. 미디어 쿼리는 화면 조건이 달라졌을 때 레이아웃 규칙을 바꾼다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>카드가 화면 밖으로 나감</th><td>고정 px 폭 대신 `1fr`과 `minmax`를 사용하고 부모의 max-width를 확인한다.</td></tr><tr><th>모바일에서 글자가 작음</th><td>본문의 최소 크기를 유지하고 제목은 clamp로 조절한다.</td></tr><tr><th>가로 스크롤 발생</th><td>개발자 도구에서 폭을 넘는 요소를 찾아 `width: 100%`를 적용한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-5">복사</button></div><pre id="lesson-prompt-5"><code>초중고 교실 프로젝터, 크롬북, 태블릿을 모두 고려한 반응형 카드 레이아웃을 제안하고 각 breakpoint에서 확인할 질문을 써 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>프로젝터용 발표 모드에서는 카드 수를 2개로 줄이고 설명을 크게 보이게 한다.</li><li>학생이 직접 화면 폭을 바꾸며 ‘레이아웃이 무너지는 지점’을 관찰 일지로 기록한다.</li></ul>
+}</code></pre><div class="callout"><strong>코드 해설</strong><br>Grid는 같은 폭의 반복 콘텐츠에 적합하다. 미디어 쿼리는 화면 조건이 달라졌을 때 레이아웃 규칙을 바꾼다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>카드가 화면 밖으로 나감</th><td>고정 px 폭 대신 `1fr`과 `minmax`를 사용하고 부모의 max-width를 확인한다.</td></tr><tr><th>모바일에서 글자가 작음</th><td>본문의 최소 크기를 유지하고 제목은 clamp로 조절한다.</td></tr><tr><th>가로 스크롤 발생</th><td>개발자 도구에서 폭을 넘는 요소를 찾아 `width: 100%`를 적용한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-5">복사</button></div><pre id="lesson-prompt-5"><code>초중고 교실 프로젝터, 크롬북, 태블릿을 모두 고려한 반응형 카드 레이아웃을 제안하고 각 breakpoint에서 확인할 질문을 써 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>프로젝터용 발표 모드에서는 카드 수를 2개로 줄이고 설명을 크게 보이게 한다.</li><li>학생이 직접 화면 폭을 바꾸며 ‘레이아웃이 무너지는 지점’을 관찰 일지로 기록한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-6" class="lesson">
           <div class="lesson-kicker">차시 06</div><h2>SVG 아이콘과 접근성</h2><p class="lead">무거운 아이콘 라이브러리 없이 currentColor를 쓰는 24x24 SVG 아이콘을 직접 넣는다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>24x24 viewBox의 SVG 하나를 복사한다.</p><small>실행 코드 시작: <code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;curr…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>SVG</strong><p>선과 도형을 코드로 표현하는 확대 가능한 이미지 형식입니다.</p><small>실습 장면: 아이콘과 빈 상태 안내 그림을 외부 라이브러리 없이 넣습니다. · 확인 질문: SVG 색상을 currentColor로 연결하면 무엇이 좋아지는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>24x24 viewBox의 SVG 하나를 복사한다.</p><small>실행 코드 시작: <code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;curr…</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>SVG</strong><p>선과 도형을 코드로 표현하는 확대 가능한 이미지 형식입니다.</p><small>실습 장면: 아이콘과 빈 상태 안내 그림을 외부 라이브러리 없이 넣습니다. · 확인 질문: SVG 색상을 currentColor로 연결하면 무엇이 좋아지는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>inline SVG, currentColor, aria-hidden, focus-visible</span></div><div><b>오늘의 비유</b><span>아이콘은 표지판이다. 같은 색을 따라가고, 표지판만으로 의미를 강요하지 않는다.</span></div><div><b>완료 기준</b><span>아이콘 색이 버튼 색과 함께 바뀌고 Tab 키로 버튼에 초점이 보이는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>24x24 viewBox의 SVG 하나를 복사한다.</li><li>stroke를 `currentColor`로 두고 버튼의 color를 상속받게 한다.</li><li>아이콘 옆에 텍스트를 두고 키보드 focus-visible 상태를 확인한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-6">복사</button></div><pre id="lesson-code-6"><code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; aria-hidden=&quot;true&quot;&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>24x24 viewBox의 SVG 하나를 복사한다.</li><li>stroke를 `currentColor`로 두고 버튼의 color를 상속받게 한다.</li><li>아이콘 옆에 텍스트를 두고 키보드 focus-visible 상태를 확인한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-6">복사</button></div><pre id="lesson-code-6"><code>&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; aria-hidden=&quot;true&quot;&gt;
   &lt;path d=&quot;M5 12h14M13 6l6 6-6 6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;
-&lt;/svg&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>currentColor는 부모의 글자색을 물려받는다. aria-hidden은 옆의 텍스트가 이미 의미를 전달할 때 중복 낭독을 막는다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>SVG가 보이지 않음</th><td>viewBox와 path의 좌표를 확인하고 width·height를 CSS로 지정한다.</td></tr><tr><th>아이콘이 너무 큼</th><td>24px 기준으로 두고 flex 정렬로 텍스트와 맞춘다.</td></tr><tr><th>키보드 초점이 안 보임</th><td>`:focus-visible`에 outline을 넣고 outline을 제거하지 않는다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-6">복사</button></div><pre id="lesson-prompt-6"><code>24x24 inline SVG 아이콘 3개를 currentColor로 작성하고, 아이콘만으로 의미를 전달하지 않도록 접근성 설명도 덧붙여 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>다운로드·외부 링크·다음 단계 등 반복되는 동작을 같은 아이콘 규격으로 통일한다.</li><li>버튼에 화살표 아이콘을 추가하되 ‘프로그램 보기’ 텍스트는 유지한다.</li></ul>
+&lt;/svg&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>currentColor는 부모의 글자색을 물려받는다. aria-hidden은 옆의 텍스트가 이미 의미를 전달할 때 중복 낭독을 막는다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>SVG가 보이지 않음</th><td>viewBox와 path의 좌표를 확인하고 width·height를 CSS로 지정한다.</td></tr><tr><th>아이콘이 너무 큼</th><td>24px 기준으로 두고 flex 정렬로 텍스트와 맞춘다.</td></tr><tr><th>키보드 초점이 안 보임</th><td>`:focus-visible`에 outline을 넣고 outline을 제거하지 않는다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-6">복사</button></div><pre id="lesson-prompt-6"><code>24x24 inline SVG 아이콘 3개를 currentColor로 작성하고, 아이콘만으로 의미를 전달하지 않도록 접근성 설명도 덧붙여 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>다운로드·외부 링크·다음 단계 등 반복되는 동작을 같은 아이콘 규격으로 통일한다.</li><li>버튼에 화살표 아이콘을 추가하되 ‘프로그램 보기’ 텍스트는 유지한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-7" class="lesson">
           <div class="lesson-kicker">차시 07</div><h2>콘텐츠를 데이터로 분리</h2><p class="lead">반복되는 프로그램 카드를 JavaScript 배열과 render 함수로 관리한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>`programs` 배열에 제목과 설명을 넣는다.</p><small>실행 코드 시작: <code>const programs = [</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>DOM</strong><p>브라우저가 HTML을 객체 형태로 읽어 둔 화면 구조입니다.</p><small>실습 장면: querySelector로 버튼과 영역을 찾아 내용을 바꿉니다. · 확인 질문: 화면의 특정 요소를 찾는 코드는 무엇을 대상으로 하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>`programs` 배열에 제목과 설명을 넣는다.</p><small>실행 코드 시작: <code>const programs = [</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>DOM</strong><p>브라우저가 HTML을 객체 형태로 읽어 둔 화면 구조입니다.</p><small>실습 장면: querySelector로 버튼과 영역을 찾아 내용을 바꿉니다. · 확인 질문: 화면의 특정 요소를 찾는 코드는 무엇을 대상으로 하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>배열, 객체, map, template literal, DOM</span></div><div><b>오늘의 비유</b><span>게시판의 원고와 배치는 분리한다. 원고를 바꿔도 게시판 틀은 그대로 둔다.</span></div><div><b>완료 기준</b><span>배열에 세 번째 프로그램을 추가하면 화면에도 세 번째 카드가 자동으로 나타나는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>`programs` 배열에 제목과 설명을 넣는다.</li><li>`map`으로 article 문자열을 만들고 `innerHTML`에 넣는다.</li><li>카드 하나를 추가한 뒤 HTML을 반복 수정하지 않고 배열만 수정한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-7">복사</button></div><pre id="lesson-code-7"><code>const programs = [
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>`programs` 배열에 제목과 설명을 넣는다.</li><li>`map`으로 article 문자열을 만들고 `innerHTML`에 넣는다.</li><li>카드 하나를 추가한 뒤 HTML을 반복 수정하지 않고 배열만 수정한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-7">복사</button></div><pre id="lesson-code-7"><code>const programs = [
   { title: &quot;교사 AI 리터러시&quot;, description: &quot;질문 설계와 검증 루틴&quot; },
   { title: &quot;학생 바이브코딩&quot;, description: &quot;작은 웹 결과물 만들기&quot; },
 ];
 programList.innerHTML = programs.map((program) =&gt; `
   &lt;article class=&quot;card&quot;&gt;&lt;h3&gt;${program.title}&lt;/h3&gt;&lt;p&gt;${program.description}&lt;/p&gt;&lt;/article&gt;
-`).join(&quot;&quot;);</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>배열은 콘텐츠 목록이고, map은 각 항목을 화면 조각으로 바꾸는 변환이다. join은 배열 사이의 쉼표를 제거한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>화면이 비어 있음</th><td>선택자가 실제 id를 가리키는지 확인하고 배열 뒤에 `.join(&quot;&quot;)`을 붙인다.</td></tr><tr><th>[object Object]가 보임</th><td>객체 속성을 template literal 안에서 명시한다.</td></tr><tr><th>따옴표 오류</th><td>template literal은 백틱을 사용하고 내부 HTML 속성은 큰따옴표로 구분한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-7">복사</button></div><pre id="lesson-prompt-7"><code>프로그램 카드 콘텐츠를 배열로 설계하고, map과 template literal을 처음 배우는 학생에게 실행 전후의 차이를 설명해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>프로그램마다 대상·시간·결과물 필드를 추가해 필터 가능한 목록으로 확장한다.</li><li>교사 연수와 학생 프로젝트를 탭으로 나누되, 데이터는 한 배열에서 관리한다.</li></ul>
+`).join(&quot;&quot;);</code></pre><div class="callout"><strong>코드 해설</strong><br>배열은 콘텐츠 목록이고, map은 각 항목을 화면 조각으로 바꾸는 변환이다. join은 배열 사이의 쉼표를 제거한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>화면이 비어 있음</th><td>선택자가 실제 id를 가리키는지 확인하고 배열 뒤에 `.join(&quot;&quot;)`을 붙인다.</td></tr><tr><th>[object Object]가 보임</th><td>객체 속성을 template literal 안에서 명시한다.</td></tr><tr><th>따옴표 오류</th><td>template literal은 백틱을 사용하고 내부 HTML 속성은 큰따옴표로 구분한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-7">복사</button></div><pre id="lesson-prompt-7"><code>프로그램 카드 콘텐츠를 배열로 설계하고, map과 template literal을 처음 배우는 학생에게 실행 전후의 차이를 설명해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>프로그램마다 대상·시간·결과물 필드를 추가해 필터 가능한 목록으로 확장한다.</li><li>교사 연수와 학생 프로젝트를 탭으로 나누되, 데이터는 한 배열에서 관리한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-8" class="lesson">
           <div class="lesson-kicker">차시 08</div><h2>내비게이션과 페이지 흐름</h2><p class="lead">앵커 내비게이션과 스크롤 흐름을 연결하고 방문자가 다음 행동을 자연스럽게 찾게 한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>header를 sticky로 만들고 배경과 테두리를 준다.</p><small>실행 코드 시작: <code>html { scroll-behavior: smooth; }</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>이벤트 리스너</strong><p>클릭·입력·제출 같은 사건을 감지하는 연결 코드입니다.</p><small>실습 장면: addEventListener로 버튼과 폼에 동작을 연결합니다. · 확인 질문: 중복 클릭을 막기 위해 어떤 시점에 disabled를 설정하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>header를 sticky로 만들고 배경과 테두리를 준다.</p><small>실행 코드 시작: <code>html { scroll-behavior: smooth; }</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>이벤트 리스너</strong><p>클릭·입력·제출 같은 사건을 감지하는 연결 코드입니다.</p><small>실습 장면: addEventListener로 버튼과 폼에 동작을 연결합니다. · 확인 질문: 중복 클릭을 막기 위해 어떤 시점에 disabled를 설정하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>anchor link, id, sticky header, scroll-margin</span></div><div><b>오늘의 비유</b><span>도서관 안내 표지처럼, 메뉴는 방문자의 현재 위치와 다음 장소를 알려 준다.</span></div><div><b>완료 기준</b><span>메뉴를 클릭했을 때 해당 영역이 보이고, 새로 고친 뒤에도 주소의 해시가 유지되는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>header를 sticky로 만들고 배경과 테두리를 준다.</li><li>각 섹션 id에 맞춰 nav 링크를 연결한다.</li><li>고정 헤더가 제목을 가리지 않도록 `scroll-margin-top`을 적용한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-8">복사</button></div><pre id="lesson-code-8"><code>html { scroll-behavior: smooth; }
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>header를 sticky로 만들고 배경과 테두리를 준다.</li><li>각 섹션 id에 맞춰 nav 링크를 연결한다.</li><li>고정 헤더가 제목을 가리지 않도록 `scroll-margin-top`을 적용한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-8">복사</button></div><pre id="lesson-code-8"><code>html { scroll-behavior: smooth; }
 section { scroll-margin-top: 90px; }
 &lt;a href=&quot;#programs&quot;&gt;프로그램&lt;/a&gt;
-&lt;section id=&quot;programs&quot;&gt;...&lt;/section&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>href의 해시와 id가 같은 문자열이어야 이동한다. sticky header가 있으면 스크롤 위치의 여백이 필요하다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>클릭해도 아무 일 없음</th><td>href 앞에 #이 있는지, target id가 중복되지 않는지 확인한다.</td></tr><tr><th>제목이 가려짐</th><td>target section에 scroll-margin-top을 넣는다.</td></tr><tr><th>모바일 메뉴가 넘침</th><td>작은 화면에서는 nav를 줄이거나 메뉴 버튼을 별도 설계한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-8">복사</button></div><pre id="lesson-prompt-8"><code>강사 홈페이지의 방문 흐름을 ‘소개-프로그램-실적-문의’ 순서로 설계하고, 각 구간의 CTA 문구를 추천해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>현재 섹션을 표시하는 작은 진행선을 추가하되 본문보다 눈에 띄지 않게 한다.</li><li>문의 버튼은 헤더와 각 프로그램 섹션 끝에 반복 배치해 이동 거리를 줄인다.</li></ul>
+&lt;section id=&quot;programs&quot;&gt;...&lt;/section&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>href의 해시와 id가 같은 문자열이어야 이동한다. sticky header가 있으면 스크롤 위치의 여백이 필요하다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>클릭해도 아무 일 없음</th><td>href 앞에 #이 있는지, target id가 중복되지 않는지 확인한다.</td></tr><tr><th>제목이 가려짐</th><td>target section에 scroll-margin-top을 넣는다.</td></tr><tr><th>모바일 메뉴가 넘침</th><td>작은 화면에서는 nav를 줄이거나 메뉴 버튼을 별도 설계한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-8">복사</button></div><pre id="lesson-prompt-8"><code>강사 홈페이지의 방문 흐름을 ‘소개-프로그램-실적-문의’ 순서로 설계하고, 각 구간의 CTA 문구를 추천해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>현재 섹션을 표시하는 작은 진행선을 추가하되 본문보다 눈에 띄지 않게 한다.</li><li>문의 버튼은 헤더와 각 프로그램 섹션 끝에 반복 배치해 이동 거리를 줄인다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-9" class="lesson">
           <div class="lesson-kicker">차시 09</div><h2>히어로와 강사 소개</h2><p class="lead">첫 화면에서 대상과 가치 제안을 한 문장으로 전달하고 소개 섹션의 신뢰 정보를 배치한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>hero에 eyebrow, h1, 설명, CTA를 배치한다.</p><small>실행 코드 시작: <code>&lt;p class=&quot;eyebrow&quot;&gt;AI · 디지털 교육 설계&lt;/p&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>컴포넌트·카드</strong><p>반복해서 사용하는 화면 조각과 정보 묶음입니다.</p><small>실습 장면: 프로그램 카드와 실적 카드를 같은 구조로 렌더링합니다. · 확인 질문: 반복되는 UI를 한 규칙으로 관리할 수 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>hero에 eyebrow, h1, 설명, CTA를 배치한다.</p><small>실행 코드 시작: <code>&lt;p class=&quot;eyebrow&quot;&gt;AI · 디지털 교육 설계&lt;/p&gt;</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>컴포넌트·카드</strong><p>반복해서 사용하는 화면 조각과 정보 묶음입니다.</p><small>실습 장면: 프로그램 카드와 실적 카드를 같은 구조로 렌더링합니다. · 확인 질문: 반복되는 UI를 한 규칙으로 관리할 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>hero, value proposition, CTA, visual hierarchy</span></div><div><b>오늘의 비유</b><span>현관의 안내판처럼 첫 화면은 ‘여기가 어떤 곳인지’와 ‘어디로 갈지’를 빠르게 알려 준다.</span></div><div><b>완료 기준</b><span>처음 5초 동안 강사의 대상, 주제, 다음 행동이 이해되는지 동료에게 물어본다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>hero에 eyebrow, h1, 설명, CTA를 배치한다.</li><li>강사 소개 카드를 만들고 짧은 질문 문장을 넣는다.</li><li>CTA 하나를 프로그램 섹션으로, 다른 하나를 실적 섹션으로 연결한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-9">복사</button></div><pre id="lesson-code-9"><code>&lt;p class=&quot;eyebrow&quot;&gt;AI · 디지털 교육 설계&lt;/p&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>hero에 eyebrow, h1, 설명, CTA를 배치한다.</li><li>강사 소개 카드를 만들고 짧은 질문 문장을 넣는다.</li><li>CTA 하나를 프로그램 섹션으로, 다른 하나를 실적 섹션으로 연결한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-9">복사</button></div><pre id="lesson-code-9"><code>&lt;p class=&quot;eyebrow&quot;&gt;AI · 디지털 교육 설계&lt;/p&gt;
 &lt;h1&gt;교실의 질문을&lt;br /&gt;&lt;em&gt;작동하는 경험&lt;/em&gt;으로.&lt;/h1&gt;
 &lt;p class=&quot;hero-lede&quot;&gt;교사와 학생이 직접 만들고 설명할 수 있는 수업을 설계합니다.&lt;/p&gt;
-&lt;a class=&quot;button&quot; href=&quot;#programs&quot;&gt;프로그램 보기&lt;/a&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>eyebrow는 맥락, h1은 핵심 약속, lede는 구체화, button은 다음 행동이다. 네 요소의 크기와 대비가 모두 같으면 계층이 약해진다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>첫 화면이 산만함</th><td>메인 메시지 하나와 CTA 두 개 이하로 줄인다.</td></tr><tr><th>문장이 추상적임</th><td>대상과 변화가 드러나는 동사로 바꾼다.</td></tr><tr><th>버튼이 묻힘</th><td>하단에 44px 이상 높이와 대비를 확보한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-9">복사</button></div><pre id="lesson-prompt-9"><code>AI·디지털 교육 강사의 홈페이지 히어로 문구를 3가지 톤으로 제안해 줘. 대상은 초중고 교사이며 과장 없이 실제 변화가 드러나게 해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>강사의 실제 수업 사진 대신 수업 질문을 시각 중심으로 사용해 개인정보 부담을 줄인다.</li><li>‘오늘의 수업 질문’ 카드에 학생이 자주 묻는 문장을 넣어 친근한 진입점을 만든다.</li></ul>
+&lt;a class=&quot;button&quot; href=&quot;#programs&quot;&gt;프로그램 보기&lt;/a&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>eyebrow는 맥락, h1은 핵심 약속, lede는 구체화, button은 다음 행동이다. 네 요소의 크기와 대비가 모두 같으면 계층이 약해진다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>첫 화면이 산만함</th><td>메인 메시지 하나와 CTA 두 개 이하로 줄인다.</td></tr><tr><th>문장이 추상적임</th><td>대상과 변화가 드러나는 동사로 바꾼다.</td></tr><tr><th>버튼이 묻힘</th><td>하단에 44px 이상 높이와 대비를 확보한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-9">복사</button></div><pre id="lesson-prompt-9"><code>AI·디지털 교육 강사의 홈페이지 히어로 문구를 3가지 톤으로 제안해 줘. 대상은 초중고 교사이며 과장 없이 실제 변화가 드러나게 해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>강사의 실제 수업 사진 대신 수업 질문을 시각 중심으로 사용해 개인정보 부담을 줄인다.</li><li>‘오늘의 수업 질문’ 카드에 학생이 자주 묻는 문장을 넣어 친근한 진입점을 만든다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-10" class="lesson">
           <div class="lesson-kicker">차시 10</div><h2>프로그램 카드와 정보 우선순위</h2><p class="lead">프로그램을 비교 가능한 카드로 정리하고 카드 안에서 핵심 정보와 부가 정보를 구분한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>프로그램 데이터에 번호·제목·설명을 넣는다.</p><small>실행 코드 시작: <code>&lt;article class=&quot;program-card card&quot;&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>컴포넌트·카드</strong><p>반복해서 사용하는 화면 조각과 정보 묶음입니다.</p><small>실습 장면: 프로그램 카드와 실적 카드를 같은 구조로 렌더링합니다. · 확인 질문: 반복되는 UI를 한 규칙으로 관리할 수 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>프로그램 데이터에 번호·제목·설명을 넣는다.</p><small>실행 코드 시작: <code>&lt;article class=&quot;program-card card&quot;&gt;</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>컴포넌트·카드</strong><p>반복해서 사용하는 화면 조각과 정보 묶음입니다.</p><small>실습 장면: 프로그램 카드와 실적 카드를 같은 구조로 렌더링합니다. · 확인 질문: 반복되는 UI를 한 규칙으로 관리할 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>card design, hierarchy, grouping, metadata</span></div><div><b>오늘의 비유</b><span>카드는 전단지의 한 칸이다. 제목과 한 줄 설명만 먼저 읽혀도 선택할 수 있어야 한다.</span></div><div><b>완료 기준</b><span>세 카드의 제목만 읽어도 차이가 느껴지고 설명을 읽으면 대상과 결과가 이해되는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>프로그램 데이터에 번호·제목·설명을 넣는다.</li><li>카드의 제목을 큰 글자로, 설명을 muted 색으로 둔다.</li><li>카드 전체를 링크로 만들지, CTA를 별도로 둘지 결정한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-10">복사</button></div><pre id="lesson-code-10"><code>&lt;article class=&quot;program-card card&quot;&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>프로그램 데이터에 번호·제목·설명을 넣는다.</li><li>카드의 제목을 큰 글자로, 설명을 muted 색으로 둔다.</li><li>카드 전체를 링크로 만들지, CTA를 별도로 둘지 결정한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-10">복사</button></div><pre id="lesson-code-10"><code>&lt;article class=&quot;program-card card&quot;&gt;
   &lt;span class=&quot;program-number&quot;&gt;01&lt;/span&gt;
   &lt;h3&gt;교사 AI 리터러시&lt;/h3&gt;
   &lt;p&gt;질문 설계와 검증 루틴&lt;/p&gt;
-&lt;/article&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>번호는 탐색을 돕고, 제목은 선택의 기준이며, 설명은 기대 결과를 구체화한다. 카드마다 다른 구조를 만들지 않는다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>카드 높이가 제각각</th><td>min-height와 flex column을 적용하고 긴 텍스트는 자연스럽게 줄바꿈한다.</td></tr><tr><th>정보가 너무 많음</th><td>시간·대상·결과물 중 한두 개만 표면에 두고 나머지는 상세 페이지로 보낸다.</td></tr><tr><th>카드가 버튼처럼 오해됨</th><td>링크라면 hover·focus 상태를 명확히 하고, 아니면 클릭 가능한 스타일을 쓰지 않는다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-10">복사</button></div><pre id="lesson-prompt-10"><code>교사 연수·학생 프로젝트·교육기관 협업 프로그램을 3개 카드로 요약해 줘. 각 카드는 대상, 변화, 권장 시간 중 핵심만 보여 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>카드 아래에 ‘어떤 상황에 적합한가’를 비교하는 작은 표를 추가한다.</li><li>프로그램 클릭 시 문의 폼의 주제가 자동 선택되도록 URL query를 사용한다.</li></ul>
+&lt;/article&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>번호는 탐색을 돕고, 제목은 선택의 기준이며, 설명은 기대 결과를 구체화한다. 카드마다 다른 구조를 만들지 않는다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>카드 높이가 제각각</th><td>min-height와 flex column을 적용하고 긴 텍스트는 자연스럽게 줄바꿈한다.</td></tr><tr><th>정보가 너무 많음</th><td>시간·대상·결과물 중 한두 개만 표면에 두고 나머지는 상세 페이지로 보낸다.</td></tr><tr><th>카드가 버튼처럼 오해됨</th><td>링크라면 hover·focus 상태를 명확히 하고, 아니면 클릭 가능한 스타일을 쓰지 않는다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-10">복사</button></div><pre id="lesson-prompt-10"><code>교사 연수·학생 프로젝트·교육기관 협업 프로그램을 3개 카드로 요약해 줘. 각 카드는 대상, 변화, 권장 시간 중 핵심만 보여 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>카드 아래에 ‘어떤 상황에 적합한가’를 비교하는 작은 표를 추가한다.</li><li>프로그램 클릭 시 문의 폼의 주제가 자동 선택되도록 URL query를 사용한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-11" class="lesson">
           <div class="lesson-kicker">차시 11</div><h2>실적과 신뢰 정보</h2><p class="lead">과장 없이 프로젝트·성과·대상을 보여 주고 수치와 맥락을 구분한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>프로젝트 이름, 대상, 기간, 역할, 결과를 정리한다.</p><small>실행 코드 시작: <code>&lt;article class=&quot;project-card&quot;&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>API</strong><p>프로그램끼리 데이터를 주고받는 약속입니다.</p><small>실습 장면: GitHub 저장소 목록과 AI 답변을 요청할 때 사용합니다. · 확인 질문: 요청 주소와 보내는 데이터 형식을 어디서 확인하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>프로젝트 이름, 대상, 기간, 역할, 결과를 정리한다.</p><small>실행 코드 시작: <code>&lt;article class=&quot;project-card&quot;&gt;</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>API</strong><p>프로그램끼리 데이터를 주고받는 약속입니다.</p><small>실습 장면: GitHub 저장소 목록과 AI 답변을 요청할 때 사용합니다. · 확인 질문: 요청 주소와 보내는 데이터 형식을 어디서 확인하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>evidence, case study, data honesty, external link</span></div><div><b>오늘의 비유</b><span>성적표에는 점수만 아니라 과목과 시험 조건도 있어야 한다. 실적도 맥락이 함께 있어야 한다.</span></div><div><b>완료 기준</b><span>동료에게 실적 카드만 보여 주고 ‘무슨 일을 했는지, 어떤 변화가 있었는지’ 설명되는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>프로젝트 이름, 대상, 기간, 역할, 결과를 정리한다.</li><li>수치가 있으면 측정 기준과 기간을 붙인다.</li><li>외부 링크는 새 탭과 rel=noreferrer를 함께 사용한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-11">복사</button></div><pre id="lesson-code-11"><code>&lt;article class=&quot;project-card&quot;&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>프로젝트 이름, 대상, 기간, 역할, 결과를 정리한다.</li><li>수치가 있으면 측정 기준과 기간을 붙인다.</li><li>외부 링크는 새 탭과 rel=noreferrer를 함께 사용한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-11">복사</button></div><pre id="lesson-code-11"><code>&lt;article class=&quot;project-card&quot;&gt;
   &lt;span class=&quot;program-number&quot;&gt;Case study&lt;/span&gt;
   &lt;h3&gt;중학교 디지털 시민성 프로젝트&lt;/h3&gt;
   &lt;p&gt;3개 학급, 4주, 학생 웹 포트폴리오 완성&lt;/p&gt;
   &lt;span class=&quot;project-meta&quot;&gt;2025 · 수업 설계&lt;/span&gt;
-&lt;/article&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>성과는 숫자 하나보다 대상·기간·역할이 붙을 때 해석 가능해진다. 숫자를 만들지 말고 확인된 사실만 넣는다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>실적이 추상적임</th><td>대상·기간·작업·결과를 한 줄씩 보강한다.</td></tr><tr><th>수치를 검증할 수 없음</th><td>출처나 내부 기록을 준비하고 공개하지 못할 수치는 문장으로 표현한다.</td></tr><tr><th>외부 링크 보안 경고</th><td>target=_blank일 때 rel=noreferrer를 설정한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-11">복사</button></div><pre id="lesson-prompt-11"><code>교사의 실제 실적을 과장하지 않고 보여 주는 사례 카드 템플릿을 만들어 줘. 확인되지 않은 수치는 빈칸으로 두고 질문으로 남겨 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>실적을 프로젝트 결과물 링크와 함께 공개하되 학생 이름과 얼굴은 익명화한다.</li><li>‘무엇을 했는가-무엇이 달라졌는가-다음에 무엇을 바꿀 것인가’ 3문장으로 사례를 쓴다.</li></ul>
+&lt;/article&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>성과는 숫자 하나보다 대상·기간·역할이 붙을 때 해석 가능해진다. 숫자를 만들지 말고 확인된 사실만 넣는다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>실적이 추상적임</th><td>대상·기간·작업·결과를 한 줄씩 보강한다.</td></tr><tr><th>수치를 검증할 수 없음</th><td>출처나 내부 기록을 준비하고 공개하지 못할 수치는 문장으로 표현한다.</td></tr><tr><th>외부 링크 보안 경고</th><td>target=_blank일 때 rel=noreferrer를 설정한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-11">복사</button></div><pre id="lesson-prompt-11"><code>교사의 실제 실적을 과장하지 않고 보여 주는 사례 카드 템플릿을 만들어 줘. 확인되지 않은 수치는 빈칸으로 두고 질문으로 남겨 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>실적을 프로젝트 결과물 링크와 함께 공개하되 학생 이름과 얼굴은 익명화한다.</li><li>‘무엇을 했는가-무엇이 달라졌는가-다음에 무엇을 바꿀 것인가’ 3문장으로 사례를 쓴다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-12" class="lesson">
           <div class="lesson-kicker">차시 12</div><h2>문의 폼과 입력 검증</h2><p class="lead">문의 폼을 만들고 필수 입력과 이메일 형식을 브라우저 기본 검증으로 확인한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>label과 input의 for/id를 연결한다.</p><small>실행 코드 시작: <code>&lt;label for=&quot;email&quot;&gt;이메일&lt;/label&gt;</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>시맨틱 HTML</strong><p>태그의 의미에 맞게 구조를 작성하는 방식입니다.</p><small>실습 장면: header·main·section·form·button을 역할에 맞게 사용합니다. · 확인 질문: div 대신 의미 있는 태그를 쓰면 누가 도움을 받는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>label과 input의 for/id를 연결한다.</p><small>실행 코드 시작: <code>&lt;label for=&quot;email&quot;&gt;이메일&lt;/label&gt;</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>시맨틱 HTML</strong><p>태그의 의미에 맞게 구조를 작성하는 방식입니다.</p><small>실습 장면: header·main·section·form·button을 역할에 맞게 사용합니다. · 확인 질문: div 대신 의미 있는 태그를 쓰면 누가 도움을 받는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>form, label, required, input type, validation</span></div><div><b>오늘의 비유</b><span>문의 폼은 상담 접수표다. 어떤 칸이 꼭 필요한지 먼저 정한다.</span></div><div><b>완료 기준</b><span>이름을 비운 상태로 제출해 브라우저 메시지가 나오고, 올바른 입력에서는 submit 이벤트가 실행되는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>label과 input의 for/id를 연결한다.</li><li>이름·이메일·문의 내용을 required로 만든다.</li><li>type=email과 textarea를 사용하고 제출 시 기본 검증 메시지를 확인한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-12">복사</button></div><pre id="lesson-code-12"><code>&lt;label for=&quot;email&quot;&gt;이메일&lt;/label&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>label과 input의 for/id를 연결한다.</li><li>이름·이메일·문의 내용을 required로 만든다.</li><li>type=email과 textarea를 사용하고 제출 시 기본 검증 메시지를 확인한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-12">복사</button></div><pre id="lesson-code-12"><code>&lt;label for=&quot;email&quot;&gt;이메일&lt;/label&gt;
 &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required /&gt;
 &lt;label for=&quot;message&quot;&gt;문의 내용&lt;/label&gt;
-&lt;textarea id=&quot;message&quot; name=&quot;message&quot; rows=&quot;6&quot; required&gt;&lt;/textarea&gt;</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>name은 서버로 보낼 키이고 id는 label이 찾는 주소다. required는 빈 값 제출을 막고 type=email은 브라우저 형식 검사를 돕는다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>label 클릭이 입력에 초점을 주지 않음</th><td>label의 for와 input id가 같은지 확인한다.</td></tr><tr><th>서버에서 값이 없음</th><td>name 속성이 있는지, FormData에서 같은 키로 읽는지 확인한다.</td></tr><tr><th>이메일 검증이 없음</th><td>type=email을 사용하고 서버에서도 다시 검증한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-12">복사</button></div><pre id="lesson-prompt-12"><code>강의 문의 폼에 필요한 필드와 필수 여부를 설계해 줘. 개인정보를 과도하게 수집하지 않도록 이유가 있는 필드만 남겨 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>문의 주제를 select로 묶고, 선택한 프로그램을 자동으로 표시하는 query parameter를 추가한다.</li><li>학생 정보는 문의 폼에서 받지 않고 학교 담당자가 필요한 범위만 적게 한다.</li></ul>
+&lt;textarea id=&quot;message&quot; name=&quot;message&quot; rows=&quot;6&quot; required&gt;&lt;/textarea&gt;</code></pre><div class="callout"><strong>코드 해설</strong><br>name은 서버로 보낼 키이고 id는 label이 찾는 주소다. required는 빈 값 제출을 막고 type=email은 브라우저 형식 검사를 돕는다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>label 클릭이 입력에 초점을 주지 않음</th><td>label의 for와 input id가 같은지 확인한다.</td></tr><tr><th>서버에서 값이 없음</th><td>name 속성이 있는지, FormData에서 같은 키로 읽는지 확인한다.</td></tr><tr><th>이메일 검증이 없음</th><td>type=email을 사용하고 서버에서도 다시 검증한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-12">복사</button></div><pre id="lesson-prompt-12"><code>강의 문의 폼에 필요한 필드와 필수 여부를 설계해 줘. 개인정보를 과도하게 수집하지 않도록 이유가 있는 필드만 남겨 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>문의 주제를 select로 묶고, 선택한 프로그램을 자동으로 표시하는 query parameter를 추가한다.</li><li>학생 정보는 문의 폼에서 받지 않고 학교 담당자가 필요한 범위만 적게 한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-13" class="lesson">
           <div class="lesson-kicker">차시 13</div><h2>비동기 상태와 중복 클릭 방지</h2><p class="lead">제출 순간 버튼을 잠그고 진행 문구·스피너·완료·실패 상태를 화면에 보여 준다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>submit 이벤트에서 preventDefault를 호출한다.</p><small>실행 코드 시작: <code>async function submitForm() {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>async/await</strong><p>비동기 작업이 끝날 때까지 읽기 쉬운 순서로 기다리는 문법입니다.</p><small>실습 장면: fetch 결과를 받은 뒤 JSON을 읽고 화면에 표시합니다. · 확인 질문: await가 빠지면 결과를 바로 사용할 수 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>submit 이벤트에서 preventDefault를 호출한다.</p><small>실행 코드 시작: <code>async function submitForm() {</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>async/await</strong><p>비동기 작업이 끝날 때까지 읽기 쉬운 순서로 기다리는 문법입니다.</p><small>실습 장면: fetch 결과를 받은 뒤 JSON을 읽고 화면에 표시합니다. · 확인 질문: await가 빠지면 결과를 바로 사용할 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>async/await, disabled, loading state, status</span></div><div><b>오늘의 비유</b><span>엘리베이터 버튼을 계속 눌러도 더 빨리 오지 않는다. 요청 중에는 상태를 보여 주고 한 번만 받는다.</span></div><div><b>완료 기준</b><span>버튼을 연속 클릭해도 요청 중에는 한 번만 눌리고, 완료 후 기본 문구로 돌아오는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>submit 이벤트에서 preventDefault를 호출한다.</li><li>버튼 disabled와 loading class를 켠다.</li><li>finally에서 버튼을 되돌리고 status에 결과를 남긴다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-13">복사</button></div><pre id="lesson-code-13"><code>async function submitForm() {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>submit 이벤트에서 preventDefault를 호출한다.</li><li>버튼 disabled와 loading class를 켠다.</li><li>finally에서 버튼을 되돌리고 status에 결과를 남긴다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-13">복사</button></div><pre id="lesson-code-13"><code>async function submitForm() {
   button.disabled = true;
   button.querySelector(&quot;.button-label&quot;).textContent = &quot;전송 중...&quot;;
   try {
@@ -240,36 +277,38 @@ section { scroll-margin-top: 90px; }
   } finally {
     button.disabled = false;
   }
-}</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>try는 성공 경로, catch는 실패 경로, finally는 어떤 결과에도 실행되는 정리 작업이다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>버튼이 계속 활성화</th><td>disabled를 boolean으로 설정했는지 확인하고 상태 클래스와 선택자를 점검한다.</td></tr><tr><th>실패해도 ‘완료’로 보임</th><td>response.ok를 검사하고 catch에서 실패 문구를 설정한다.</td></tr><tr><th>스피너가 사라지지 않음</th><td>finally에서 loading class를 제거한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-13">복사</button></div><pre id="lesson-prompt-13"><code>문의 전송 UI를 구현할 때 필요한 상태를 idle·loading·success·error로 나누고, 중복 클릭을 막는 JavaScript를 작성해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>스피너와 함께 예상 대기 시간을 짧게 안내하고, 오류 시 다시 시도 버튼을 제공한다.</li><li>GitHub 로딩에도 skeleton-card와 empty-state를 적용해 빈 화면을 없앤다.</li></ul>
+}</code></pre><div class="callout"><strong>코드 해설</strong><br>try는 성공 경로, catch는 실패 경로, finally는 어떤 결과에도 실행되는 정리 작업이다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>버튼이 계속 활성화</th><td>disabled를 boolean으로 설정했는지 확인하고 상태 클래스와 선택자를 점검한다.</td></tr><tr><th>실패해도 ‘완료’로 보임</th><td>response.ok를 검사하고 catch에서 실패 문구를 설정한다.</td></tr><tr><th>스피너가 사라지지 않음</th><td>finally에서 loading class를 제거한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-13">복사</button></div><pre id="lesson-prompt-13"><code>문의 전송 UI를 구현할 때 필요한 상태를 idle·loading·success·error로 나누고, 중복 클릭을 막는 JavaScript를 작성해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>스피너와 함께 예상 대기 시간을 짧게 안내하고, 오류 시 다시 시도 버튼을 제공한다.</li><li>GitHub 로딩에도 skeleton-card와 empty-state를 적용해 빈 화면을 없앤다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-14" class="lesson">
           <div class="lesson-kicker">차시 14</div><h2>GitHub API로 실적 불러오기</h2><p class="lead">공개 저장소 API를 호출하고 로딩·성공·빈 상태를 카드로 렌더링한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>GitHub 사용자 이름 설정값을 만든다.</p><small>실행 코드 시작: <code>const response = await fetch(</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>fetch</strong><p>브라우저나 서버에서 네트워크 요청을 보내는 함수입니다.</p><small>실습 장면: GitHub·AI·문의 API에 GET 또는 POST 요청을 보냅니다. · 확인 질문: 요청 전후에 loading 상태를 어떻게 보여 주는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>GitHub 사용자 이름 설정값을 만든다.</p><small>실행 코드 시작: <code>const response = await fetch(</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>fetch</strong><p>브라우저나 서버에서 네트워크 요청을 보내는 함수입니다.</p><small>실습 장면: GitHub·AI·문의 API에 GET 또는 POST 요청을 보냅니다. · 확인 질문: 요청 전후에 loading 상태를 어떻게 보여 주는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>fetch, JSON, HTTP status, empty state</span></div><div><b>오늘의 비유</b><span>도서관 목록을 매번 베껴 쓰지 않고, 목록 서비스에 최신 카탈로그를 요청한다.</span></div><div><b>완료 기준</b><span>사용자 이름을 바꾸었을 때 공개 저장소 카드가 표시되고, 저장소가 없으면 안내 SVG와 문구가 보이는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>GitHub 사용자 이름 설정값을 만든다.</li><li>fetch 후 response.ok를 확인하고 JSON을 읽는다.</li><li>fork를 제외하고 최신 저장소 3개만 카드로 표시한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-14">복사</button></div><pre id="lesson-code-14"><code>const response = await fetch(
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>GitHub 사용자 이름 설정값을 만든다.</li><li>fetch 후 response.ok를 확인하고 JSON을 읽는다.</li><li>fork를 제외하고 최신 저장소 3개만 카드로 표시한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-14">복사</button></div><pre id="lesson-code-14"><code>const response = await fetch(
   `https://api.github.com/users/${username}/repos?sort=updated&amp;per_page=3`
 );
 if (!response.ok) throw new Error(&quot;github-request-failed&quot;);
 const repositories = await response.json();
-renderProjects(repositories.filter((repo) =&gt; !repo.fork));</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>URL의 username을 encodeURIComponent로 안전하게 넣고, HTTP 응답이 200번대가 아니면 실패로 처리한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>403 rate limit</th><td>잠시 후 다시 시도하고, 공개 프로젝트를 정적 데이터로 캐시하는 방법을 설명한다.</td></tr><tr><th>404 사용자 없음</th><td>GitHub 아이디 철자와 공개 상태를 확인한다.</td></tr><tr><th>CORS 오류</th><td>공식 API의 브라우저 호출 정책을 확인하고 필요하면 서버 함수로 프록시한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-14">복사</button></div><pre id="lesson-prompt-14"><code>GitHub 공개 저장소 API를 교육용 포트폴리오에 연결하는 코드를 작성해 줘. 로딩 스켈레톤, 빈 상태, HTTP 오류 처리, 개인정보 주의점을 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>GitHub API 응답을 서버 함수에서 캐시하고 브라우저에는 필요한 필드만 내려준다.</li><li>저장소의 language와 stars를 보여 주되, 별 수를 성과처럼 과장하지 않는다.</li></ul>
+renderProjects(repositories.filter((repo) =&gt; !repo.fork));</code></pre><div class="callout"><strong>코드 해설</strong><br>URL의 username을 encodeURIComponent로 안전하게 넣고, HTTP 응답이 200번대가 아니면 실패로 처리한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>403 rate limit</th><td>잠시 후 다시 시도하고, 공개 프로젝트를 정적 데이터로 캐시하는 방법을 설명한다.</td></tr><tr><th>404 사용자 없음</th><td>GitHub 아이디 철자와 공개 상태를 확인한다.</td></tr><tr><th>CORS 오류</th><td>공식 API의 브라우저 호출 정책을 확인하고 필요하면 서버 함수로 프록시한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-14">복사</button></div><pre id="lesson-prompt-14"><code>GitHub 공개 저장소 API를 교육용 포트폴리오에 연결하는 코드를 작성해 줘. 로딩 스켈레톤, 빈 상태, HTTP 오류 처리, 개인정보 주의점을 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>GitHub API 응답을 서버 함수에서 캐시하고 브라우저에는 필요한 필드만 내려준다.</li><li>저장소의 language와 stars를 보여 주되, 별 수를 성과처럼 과장하지 않는다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-15" class="lesson">
           <div class="lesson-kicker">차시 15</div><h2>Vercel 서버 함수와 안전한 API 프록시</h2><p class="lead">브라우저에 API 키를 노출하지 않고 Vercel Function에서 외부 AI API를 호출한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>`api/ask-ai.js` 파일을 만든다.</p><small>실행 코드 시작: <code>export default async function handler(request, re…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Serverless Function</strong><p>서버를 직접 관리하지 않고 필요할 때 실행되는 서버 코드입니다.</p><small>실습 장면: api/ask-ai.js와 api/contact.js가 Vercel에서 실행됩니다. · 확인 질문: 함수에서 검증해야 할 입력과 환경 변수는 무엇인가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>`api/ask-ai.js` 파일을 만든다.</p><small>실행 코드 시작: <code>export default async function handler(request, re…</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Serverless Function</strong><p>서버를 직접 관리하지 않고 필요할 때 실행되는 서버 코드입니다.</p><small>실습 장면: api/ask-ai.js와 api/contact.js가 Vercel에서 실행됩니다. · 확인 질문: 함수에서 검증해야 할 입력과 환경 변수는 무엇인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>serverless function, POST, environment variable, secret</span></div><div><b>오늘의 비유</b><span>교실 창구에서 신청서를 받고, 열쇠가 필요한 서류실 업무는 뒤에서 처리한다.</span></div><div><b>완료 기준</b><span>개발자 도구 Network 탭에서 요청 body에 API 키가 없고, 키가 없는 데모 모드도 오류 화면을 만들지 않는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>`api/ask-ai.js` 파일을 만든다.</li><li>POST body의 question을 검증한다.</li><li>`process.env.OPENAI_API_KEY`를 사용해 외부 API를 호출하고 답만 반환한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-15">복사</button></div><pre id="lesson-code-15"><code>export default async function handler(request, response) {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>`api/ask-ai.js` 파일을 만든다.</li><li>POST body의 question을 검증한다.</li><li>`process.env.OPENAI_API_KEY`를 사용해 외부 API를 호출하고 답만 반환한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-15">복사</button></div><pre id="lesson-code-15"><code>export default async function handler(request, response) {
   if (request.method !== &quot;POST&quot;) return response.status(405).end();
   const { question } = request.body || {};
   if (!question?.trim()) return response.status(400).json({ error: &quot;질문 필요&quot; });
@@ -278,35 +317,37 @@ renderProjects(repositories.filter((repo) =&gt; !repo.fork));</code></pre>
     headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
   });
   return response.status(200).json(await upstream.json());
-}</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>브라우저 JavaScript에는 비밀값을 넣지 않는다. 서버 함수가 요청을 받아 환경 변수를 사용하고, 브라우저에는 필요한 결과만 돌려준다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>401 인증 오류</th><td>Vercel 환경 변수 이름이 정확한지, 배포 환경에 값이 저장됐는지 확인한다.</td></tr><tr><th>500 함수 오류</th><td>함수 로그와 요청 body 구조를 확인하고 민감한 값을 로그로 출력하지 않는다.</td></tr><tr><th>브라우저에 키가 보임</th><td>`src` 파일에서 키를 제거하고 `.env`는 Git에 커밋하지 않는다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-15">복사</button></div><pre id="lesson-prompt-15"><code>Vercel 서버 함수에서 OpenAI Responses API를 호출하는 교육용 예제를 작성해 줘. API 키를 브라우저에 노출하지 않고 입력 검증과 데모 fallback을 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>AI 모델명과 시스템 지침을 환경 변수·서버 코드에서 관리하고 사용자 입력 길이 제한을 둔다.</li><li>AI 답변을 그대로 신뢰하지 않고 ‘수업 목표에 맞는가’ 체크 질문을 함께 보여 준다.</li></ul>
+}</code></pre><div class="callout"><strong>코드 해설</strong><br>브라우저 JavaScript에는 비밀값을 넣지 않는다. 서버 함수가 요청을 받아 환경 변수를 사용하고, 브라우저에는 필요한 결과만 돌려준다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>401 인증 오류</th><td>Vercel 환경 변수 이름이 정확한지, 배포 환경에 값이 저장됐는지 확인한다.</td></tr><tr><th>500 함수 오류</th><td>함수 로그와 요청 body 구조를 확인하고 민감한 값을 로그로 출력하지 않는다.</td></tr><tr><th>브라우저에 키가 보임</th><td>`src` 파일에서 키를 제거하고 `.env`는 Git에 커밋하지 않는다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-15">복사</button></div><pre id="lesson-prompt-15"><code>Vercel 서버 함수에서 OpenAI Responses API를 호출하는 교육용 예제를 작성해 줘. API 키를 브라우저에 노출하지 않고 입력 검증과 데모 fallback을 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>AI 모델명과 시스템 지침을 환경 변수·서버 코드에서 관리하고 사용자 입력 길이 제한을 둔다.</li><li>AI 답변을 그대로 신뢰하지 않고 ‘수업 목표에 맞는가’ 체크 질문을 함께 보여 준다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-16" class="lesson">
           <div class="lesson-kicker">차시 16</div><h2>AI 질문 UI와 프롬프트 구조</h2><p class="lead">질문 입력 폼과 AI 응답 상태를 연결하고 결과를 수업 설계 초안으로 사용한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>question textarea를 만든다.</p><small>실행 코드 시작: <code>const payload = {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Prompt</strong><p>AI에게 역할·상황·목표·제약·출력 형식을 전달하는 요청문입니다.</p><small>실습 장면: 오류 수정과 개선을 차시별 프롬프트로 요청합니다. · 확인 질문: 기대 결과와 확인 방법을 프롬프트에 적었는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>question textarea를 만든다.</p><small>실행 코드 시작: <code>const payload = {</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Prompt</strong><p>AI에게 역할·상황·목표·제약·출력 형식을 전달하는 요청문입니다.</p><small>실습 장면: 오류 수정과 개선을 차시별 프롬프트로 요청합니다. · 확인 질문: 기대 결과와 확인 방법을 프롬프트에 적었는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>prompt, instruction, output contract, fallback</span></div><div><b>오늘의 비유</b><span>AI에게 ‘도와줘’라고 말하는 대신, 학년·목표·제약이 적힌 수업 의뢰서를 건넨다.</span></div><div><b>완료 기준</b><span>질문에 ‘대상·시간·목표’를 넣었을 때 답이 더 구체적인지 비교하고, 답을 그대로 게시하지 않고 사람이 검토한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>question textarea를 만든다.</li><li>서버에서 한국어·3단계 활동·확인 질문 규칙을 지시한다.</li><li>응답을 status 영역에 표시하고 긴 문장은 충분한 줄 높이로 보여 준다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-16">복사</button></div><pre id="lesson-code-16"><code>const payload = {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>question textarea를 만든다.</li><li>서버에서 한국어·3단계 활동·확인 질문 규칙을 지시한다.</li><li>응답을 status 영역에 표시하고 긴 문장은 충분한 줄 높이로 보여 준다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-16">복사</button></div><pre id="lesson-code-16"><code>const payload = {
   model: process.env.OPENAI_MODEL || &quot;gpt-4.1-mini&quot;,
   instructions: &quot;한국어로 답하고 3단계 활동과 확인 질문을 제안하세요.&quot;,
   input: question.trim(),
-};</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>instructions는 역할과 출력 규칙, input은 사용자의 실제 상황이다. 둘을 분리하면 같은 품질 기준을 반복해서 적용할 수 있다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>응답이 너무 길음</th><td>서버 지침에 분량과 형식을 넣고 프런트에서 접기 UI를 둔다.</td></tr><tr><th>답이 수업과 무관함</th><td>대상·목표·제약을 입력에 포함하고 금지할 내용도 명시한다.</td></tr><tr><th>응답 텍스트가 비어 있음</th><td>output_text가 없는 경우의 fallback 문구를 둔다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-16">복사</button></div><pre id="lesson-prompt-16"><code>초중고 교사를 위한 수업 설계 AI 프롬프트 템플릿을 만들어 줘. 대상·목표·시간·준비물·출력 형식을 빈칸으로 제공하고, 복사 가능한 한 덩어리로 작성해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>학생이 AI 답변에서 사실·아이디어·추가 확인이 필요한 부분을 색으로 분류한다.</li><li>같은 질문에 프롬프트를 한 줄씩 보강하며 결과가 어떻게 바뀌는지 비교한다.</li></ul>
+};</code></pre><div class="callout"><strong>코드 해설</strong><br>instructions는 역할과 출력 규칙, input은 사용자의 실제 상황이다. 둘을 분리하면 같은 품질 기준을 반복해서 적용할 수 있다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>응답이 너무 길음</th><td>서버 지침에 분량과 형식을 넣고 프런트에서 접기 UI를 둔다.</td></tr><tr><th>답이 수업과 무관함</th><td>대상·목표·제약을 입력에 포함하고 금지할 내용도 명시한다.</td></tr><tr><th>응답 텍스트가 비어 있음</th><td>output_text가 없는 경우의 fallback 문구를 둔다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-16">복사</button></div><pre id="lesson-prompt-16"><code>초중고 교사를 위한 수업 설계 AI 프롬프트 템플릿을 만들어 줘. 대상·목표·시간·준비물·출력 형식을 빈칸으로 제공하고, 복사 가능한 한 덩어리로 작성해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>학생이 AI 답변에서 사실·아이디어·추가 확인이 필요한 부분을 색으로 분류한다.</li><li>같은 질문에 프롬프트를 한 줄씩 보강하며 결과가 어떻게 바뀌는지 비교한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-17" class="lesson">
           <div class="lesson-kicker">차시 17</div><h2>문의 API와 웹훅 연결</h2><p class="lead">문의 데이터를 검증하고 선택한 webhook URL로 전달하는 서버 함수를 만든다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>name·email·message의 필수 여부를 검사한다.</p><small>실행 코드 시작: <code>const safePayload = {</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Webhook</strong><p>한 서비스에서 일어난 일을 다른 주소로 전달하는 요청입니다.</p><small>실습 장면: 문의 내용을 지정된 자동화 서비스로 전송합니다. · 확인 질문: 전달할 개인정보를 최소화했는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>name·email·message의 필수 여부를 검사한다.</p><small>실행 코드 시작: <code>const safePayload = {</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Webhook</strong><p>한 서비스에서 일어난 일을 다른 주소로 전달하는 요청입니다.</p><small>실습 장면: 문의 내용을 지정된 자동화 서비스로 전송합니다. · 확인 질문: 전달할 개인정보를 최소화했는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>payload, validation, webhook, privacy</span></div><div><b>오늘의 비유</b><span>우편함에 넣기 전 주소와 봉투를 확인하고, 정해진 수신함으로 전달한다.</span></div><div><b>완료 기준</b><span>환경 변수가 없을 때도 데모 성공 메시지가 나오고, 실제 webhook을 설정하면 응답 상태가 성공으로 돌아오는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>name·email·message의 필수 여부를 검사한다.</li><li>trim으로 앞뒤 공백을 제거한 safePayload를 만든다.</li><li>CONTACT_WEBHOOK_URL이 없으면 데모 접수, 있으면 webhook POST를 실행한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-17">복사</button></div><pre id="lesson-code-17"><code>const safePayload = {
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>name·email·message의 필수 여부를 검사한다.</li><li>trim으로 앞뒤 공백을 제거한 safePayload를 만든다.</li><li>CONTACT_WEBHOOK_URL이 없으면 데모 접수, 있으면 webhook POST를 실행한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-17">복사</button></div><pre id="lesson-code-17"><code>const safePayload = {
   name: payload.name.trim(),
   email: payload.email.trim(),
   topic: String(payload.topic || &quot;기타&quot;),
@@ -316,19 +357,20 @@ await fetch(process.env.CONTACT_WEBHOOK_URL, {
   method: &quot;POST&quot;,
   headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
   body: JSON.stringify(safePayload),
-});</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>서버는 입력을 그대로 전달하지 않고 필요한 필드만 골라 safePayload를 만든다. webhook은 이메일·자동화 서비스·데이터베이스로 확장할 수 있다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>400 필수 입력 오류</th><td>프런트 required뿐 아니라 서버에서 읽는 키 이름과 값도 점검한다.</td></tr><tr><th>webhook 502</th><td>수신 URL의 인증·본문 형식·응답 상태를 확인한다.</td></tr><tr><th>개인정보 과다 수집</th><td>필요한 정보만 받고 보관 기간과 접근 권한을 정한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-17">복사</button></div><pre id="lesson-prompt-17"><code>강의 문의 API를 설계해 줘. 이름·이메일·문의 내용만 받고, 서버에서 검증한 뒤 webhook으로 전달하며, 개인정보를 로그에 남기지 않는 코드와 설명을 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>실제 운영에서는 스팸 방지와 동의 문구, 보관 기간, 담당자 알림을 추가한다.</li><li>문의 접수 후 자동 회신 대신 화면에 ‘영업일 기준 답변 시간’을 명확히 안내한다.</li></ul>
+});</code></pre><div class="callout"><strong>코드 해설</strong><br>서버는 입력을 그대로 전달하지 않고 필요한 필드만 골라 safePayload를 만든다. webhook은 이메일·자동화 서비스·데이터베이스로 확장할 수 있다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>400 필수 입력 오류</th><td>프런트 required뿐 아니라 서버에서 읽는 키 이름과 값도 점검한다.</td></tr><tr><th>webhook 502</th><td>수신 URL의 인증·본문 형식·응답 상태를 확인한다.</td></tr><tr><th>개인정보 과다 수집</th><td>필요한 정보만 받고 보관 기간과 접근 권한을 정한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-17">복사</button></div><pre id="lesson-prompt-17"><code>강의 문의 API를 설계해 줘. 이름·이메일·문의 내용만 받고, 서버에서 검증한 뒤 webhook으로 전달하며, 개인정보를 로그에 남기지 않는 코드와 설명을 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>실제 운영에서는 스팸 방지와 동의 문구, 보관 기간, 담당자 알림을 추가한다.</li><li>문의 접수 후 자동 회신 대신 화면에 ‘영업일 기준 답변 시간’을 명확히 안내한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-18" class="lesson">
           <div class="lesson-kicker">차시 18</div><h2>환경 변수와 보안 점검</h2><p class="lead">로컬·Vercel 환경 변수를 구분하고 비밀값을 저장소에 올리지 않는 습관을 만든다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>`.env.example`에는 키 이름만 남긴다.</p><small>실행 코드 시작: <code># .env.example</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>환경 변수</strong><p>코드와 분리해 실행 환경에 저장하는 설정값입니다.</p><small>실습 장면: OPENAI_API_KEY와 CONTACT_WEBHOOK_URL을 Vercel에 저장합니다. · 확인 질문: 공개 저장소에 실제 값을 올리지 않으려면 어떻게 하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>`.env.example`에는 키 이름만 남긴다.</p><small>실행 코드 시작: <code># .env.example</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>환경 변수</strong><p>코드와 분리해 실행 환경에 저장하는 설정값입니다.</p><small>실습 장면: OPENAI_API_KEY와 CONTACT_WEBHOOK_URL을 Vercel에 저장합니다. · 확인 질문: 공개 저장소에 실제 값을 올리지 않으려면 어떻게 하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>dotenv, .env.example, secret, gitignore</span></div><div><b>오늘의 비유</b><span>교사용 캐비닛 열쇠는 교실 벽에 붙이지 않고 담당자만 관리한다.</span></div><div><b>완료 기준</b><span>`git status`에 실제 환경 파일이 보이지 않고, 예시 파일만 저장소에 포함되는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>`.env.example`에는 키 이름만 남긴다.</li><li>실제 `.env.local`은 `.gitignore`에 추가한다.</li><li>Vercel Project Settings의 Environment Variables에서 Preview와 Production을 구분한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-18">복사</button></div><pre id="lesson-code-18"><code># .env.example
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>`.env.example`에는 키 이름만 남긴다.</li><li>실제 `.env.local`은 `.gitignore`에 추가한다.</li><li>Vercel Project Settings의 Environment Variables에서 Preview와 Production을 구분한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-18">복사</button></div><pre id="lesson-code-18"><code># .env.example
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4.1-mini
 CONTACT_WEBHOOK_URL=
@@ -336,110 +378,116 @@ CONTACT_WEBHOOK_URL=
 # .gitignore
 .env
 .env.*
-!.env.example</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>예시 파일은 팀원이 필요한 변수 이름을 알도록 돕고, 실제 값은 각 환경에 따로 저장한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>키가 GitHub에 올라감</th><td>즉시 키를 폐기·재발급하고 커밋 기록에 남은 값을 제거한다.</td></tr><tr><th>Vercel에서 값이 없음</th><td>올바른 프로젝트·환경에 저장했는지 확인하고 재배포한다.</td></tr><tr><th>로컬에서 undefined</th><td>개발 서버를 환경 변수 추가 후 재시작한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-18">복사</button></div><pre id="lesson-prompt-18"><code>Windows와 Vercel에서 환경 변수를 안전하게 관리하는 체크리스트를 작성해 줘. 학생에게 API 키를 공개하지 않는 이유를 쉬운 비유로 설명해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>개발팀은 비밀값의 소유자·교체 주기·폐기 절차를 짧게 문서화한다.</li><li>학생 실습에서는 실제 키 대신 데모 모드와 제한된 테스트 키를 사용한다.</li></ul>
+!.env.example</code></pre><div class="callout"><strong>코드 해설</strong><br>예시 파일은 팀원이 필요한 변수 이름을 알도록 돕고, 실제 값은 각 환경에 따로 저장한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>키가 GitHub에 올라감</th><td>즉시 키를 폐기·재발급하고 커밋 기록에 남은 값을 제거한다.</td></tr><tr><th>Vercel에서 값이 없음</th><td>올바른 프로젝트·환경에 저장했는지 확인하고 재배포한다.</td></tr><tr><th>로컬에서 undefined</th><td>개발 서버를 환경 변수 추가 후 재시작한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-18">복사</button></div><pre id="lesson-prompt-18"><code>Windows와 Vercel에서 환경 변수를 안전하게 관리하는 체크리스트를 작성해 줘. 학생에게 API 키를 공개하지 않는 이유를 쉬운 비유로 설명해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>개발팀은 비밀값의 소유자·교체 주기·폐기 절차를 짧게 문서화한다.</li><li>학생 실습에서는 실제 키 대신 데모 모드와 제한된 테스트 키를 사용한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-19" class="lesson">
           <div class="lesson-kicker">차시 19</div><h2>접근성·SEO·성능 기본기</h2><p class="lead">제목·메타 설명·키보드 초점·모션 감소와 이미지 대체 텍스트를 점검한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>title과 description을 실제 내용에 맞게 쓴다.</p><small>실행 코드 시작: <code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하…</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>접근성</strong><p>장애와 기기 차이와 상관없이 사용할 수 있게 만드는 기준입니다.</p><small>실습 장면: 키보드 focus, label, alt, 대비, reduced motion을 점검합니다. · 확인 질문: 마우스 없이 Tab만으로 핵심 행동을 수행할 수 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>title과 description을 실제 내용에 맞게 쓴다.</p><small>실행 코드 시작: <code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하…</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>접근성</strong><p>장애와 기기 차이와 상관없이 사용할 수 있게 만드는 기준입니다.</p><small>실습 장면: 키보드 focus, label, alt, 대비, reduced motion을 점검합니다. · 확인 질문: 마우스 없이 Tab만으로 핵심 행동을 수행할 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>SEO meta, alt, focus-visible, reduced motion, semantic</span></div><div><b>오늘의 비유</b><span>안내 방송은 소리만으로 끝나지 않는다. 표지판·텍스트·동선이 함께 있어야 한다.</span></div><div><b>완료 기준</b><span>Tab 키만으로 모든 링크·폼에 도달하고, focus ring이 보이며, HTML 검사에서 label 누락이 없는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>title과 description을 실제 내용에 맞게 쓴다.</li><li>장식 SVG는 aria-hidden, 의미 있는 이미지는 alt를 쓴다.</li><li>Tab 이동과 prefers-reduced-motion을 확인한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-19">복사</button></div><pre id="lesson-code-19"><code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하는 강사 포트폴리오&quot; /&gt;
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>title과 description을 실제 내용에 맞게 쓴다.</li><li>장식 SVG는 aria-hidden, 의미 있는 이미지는 alt를 쓴다.</li><li>Tab 이동과 prefers-reduced-motion을 확인한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-19">복사</button></div><pre id="lesson-code-19"><code>&lt;meta name=&quot;description&quot; content=&quot;AI와 디지털 수업을 설계하는 강사 포트폴리오&quot; /&gt;
 &lt;a class=&quot;button&quot; href=&quot;#contact&quot;&gt;강의 문의&lt;/a&gt;
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; }
-}</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>검색 엔진용 title·description과 사용자용 heading은 목적이 다르지만 페이지의 실제 내용을 정확히 반영해야 한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>검색 결과 설명이 이상함</th><td>description을 1~2문장으로 다시 쓰고 중복 키워드를 줄인다.</td></tr><tr><th>키보드 초점이 안 보임</th><td>outline을 제거하지 말고 focus-visible 스타일을 추가한다.</td></tr><tr><th>이미지 설명이 중복됨</th><td>장식은 alt 빈 문자열 또는 aria-hidden으로 처리한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-19">복사</button></div><pre id="lesson-prompt-19"><code>교육용 개인 홈페이지의 접근성·SEO·성능 점검표를 만들어 줘. Windows Chrome에서 교사가 따라 할 수 있는 확인 순서와 통과 기준을 넣어 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>Lighthouse 점수를 목표로 삼되 실제 사용자가 완료해야 하는 작업을 우선순위로 둔다.</li><li>큰 이미지 대신 SVG 마크를 사용하고, 외부 폰트 없이도 제목과 본문 계층이 보이게 한다.</li></ul>
+}</code></pre><div class="callout"><strong>코드 해설</strong><br>검색 엔진용 title·description과 사용자용 heading은 목적이 다르지만 페이지의 실제 내용을 정확히 반영해야 한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>검색 결과 설명이 이상함</th><td>description을 1~2문장으로 다시 쓰고 중복 키워드를 줄인다.</td></tr><tr><th>키보드 초점이 안 보임</th><td>outline을 제거하지 말고 focus-visible 스타일을 추가한다.</td></tr><tr><th>이미지 설명이 중복됨</th><td>장식은 alt 빈 문자열 또는 aria-hidden으로 처리한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-19">복사</button></div><pre id="lesson-prompt-19"><code>교육용 개인 홈페이지의 접근성·SEO·성능 점검표를 만들어 줘. Windows Chrome에서 교사가 따라 할 수 있는 확인 순서와 통과 기준을 넣어 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>Lighthouse 점수를 목표로 삼되 실제 사용자가 완료해야 하는 작업을 우선순위로 둔다.</li><li>큰 이미지 대신 SVG 마크를 사용하고, 외부 폰트 없이도 제목과 본문 계층이 보이게 한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-20" class="lesson">
           <div class="lesson-kicker">차시 20</div><h2>브라우저에서 QA하기</h2><p class="lead">Chrome 개발자 도구를 사용해 화면 크기·콘솔·네트워크·접근성을 순서대로 점검한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>Elements에서 padding과 폭을 확인한다.</p><small>실행 코드 시작: <code>// Chrome DevTools 점검 메모</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>반응형 웹</strong><p>화면 폭에 따라 배치와 크기가 자연스럽게 바뀌는 설계입니다.</p><small>실습 장면: 390·768·1280px에서 카드와 버튼이 깨지지 않는지 확인합니다. · 확인 질문: 모바일에서 가로 스크롤이 생기는 이유는 무엇인가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>Elements에서 padding과 폭을 확인한다.</p><small>실행 코드 시작: <code>// Chrome DevTools 점검 메모</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>반응형 웹</strong><p>화면 폭에 따라 배치와 크기가 자연스럽게 바뀌는 설계입니다.</p><small>실습 장면: 390·768·1280px에서 카드와 버튼이 깨지지 않는지 확인합니다. · 확인 질문: 모바일에서 가로 스크롤이 생기는 이유는 무엇인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>DevTools, console, network, responsive mode, regression</span></div><div><b>오늘의 비유</b><span>시험 채점표처럼 같은 순서의 점검표를 반복하면 놓치는 문제가 줄어든다.</span></div><div><b>완료 기준</b><span>한 번의 테스트 결과를 ‘조건·재현 단계·기대 결과·실제 결과’로 남긴다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>Elements에서 padding과 폭을 확인한다.</li><li>Console에 오류가 없는지 본다.</li><li>Network에서 API 상태 코드와 응답 시간을 확인한다.</li><li>기기 모드와 키보드 Tab을 순서대로 확인한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-20">복사</button></div><pre id="lesson-code-20"><code>// Chrome DevTools 점검 메모
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>Elements에서 padding과 폭을 확인한다.</li><li>Console에 오류가 없는지 본다.</li><li>Network에서 API 상태 코드와 응답 시간을 확인한다.</li><li>기기 모드와 키보드 Tab을 순서대로 확인한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-20">복사</button></div><pre id="lesson-code-20"><code>// Chrome DevTools 점검 메모
 // 1. Console: 빨간 오류가 없는가
 // 2. Network: 요청이 200/400/500 중 무엇인가
 // 3. Responsive: 390 / 768 / 1280px
-// 4. Keyboard: Tab 순서와 focus ring</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>도구는 문제를 대신 해결하지 않고 문제의 위치를 좁혀 준다. 먼저 오류가 발생한 단계와 입력을 기록한다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>Console 오류가 많음</th><td>첫 번째 오류부터 읽고, 증상과 원인을 분리한다.</td></tr><tr><th>Network 요청이 pending</th><td>서버 함수 응답·인터넷 연결·요청 payload를 확인한다.</td></tr><tr><th>모바일만 깨짐</th><td>문제가 생긴 실제 폭과 넘치는 요소를 기록한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-20">복사</button></div><pre id="lesson-prompt-20"><code>홈페이지 QA를 위한 버그 리포트 양식을 만들어 줘. 원인을 추측하지 않고 조건·재현·기대·실제·스크린샷 위치를 기록하게 해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>학생에게 같은 버그를 두 번 재현한 뒤에만 AI에게 수정 프롬프트를 보내도록 규칙을 둔다.</li><li>수정 후에는 새로운 오류가 생기지 않았는지 같은 체크리스트를 다시 실행한다.</li></ul>
+// 4. Keyboard: Tab 순서와 focus ring</code></pre><div class="callout"><strong>코드 해설</strong><br>도구는 문제를 대신 해결하지 않고 문제의 위치를 좁혀 준다. 먼저 오류가 발생한 단계와 입력을 기록한다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>Console 오류가 많음</th><td>첫 번째 오류부터 읽고, 증상과 원인을 분리한다.</td></tr><tr><th>Network 요청이 pending</th><td>서버 함수 응답·인터넷 연결·요청 payload를 확인한다.</td></tr><tr><th>모바일만 깨짐</th><td>문제가 생긴 실제 폭과 넘치는 요소를 기록한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-20">복사</button></div><pre id="lesson-prompt-20"><code>홈페이지 QA를 위한 버그 리포트 양식을 만들어 줘. 원인을 추측하지 않고 조건·재현·기대·실제·스크린샷 위치를 기록하게 해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>학생에게 같은 버그를 두 번 재현한 뒤에만 AI에게 수정 프롬프트를 보내도록 규칙을 둔다.</li><li>수정 후에는 새로운 오류가 생기지 않았는지 같은 체크리스트를 다시 실행한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-21" class="lesson">
           <div class="lesson-kicker">차시 21</div><h2>GitHub에 올리기</h2><p class="lead">저장소를 만들고 .gitignore를 점검한 뒤 커밋을 원격 저장소에 올린다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>GitHub에서 빈 저장소를 만들되 README 자동 생성은 끈다.</p><small>실행 코드 시작: <code>git status</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Commit</strong><p>특정 시점의 변경 내용을 이름 붙여 저장하는 기록입니다.</p><small>실습 장면: 작은 기능 단위로 feat·fix 커밋을 만듭니다. · 확인 질문: 커밋 메시지만 보고 무엇이 바뀌었는지 알 수 있는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>GitHub에서 빈 저장소를 만들되 README 자동 생성은 끈다.</p><small>실행 코드 시작: <code>git status</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Commit</strong><p>특정 시점의 변경 내용을 이름 붙여 저장하는 기록입니다.</p><small>실습 장면: 작은 기능 단위로 feat·fix 커밋을 만듭니다. · 확인 질문: 커밋 메시지만 보고 무엇이 바뀌었는지 알 수 있는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>remote, branch, commit, push, README</span></div><div><b>오늘의 비유</b><span>GitHub는 개인 컴퓨터 밖에 있는 공동 작업 보관함이다.</span></div><div><b>완료 기준</b><span>GitHub 저장소에서 파일과 README가 보이고, `.env.local`이 올라가지 않았는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>GitHub에서 빈 저장소를 만들되 README 자동 생성은 끈다.</li><li>PowerShell에서 `git remote add origin ...`을 실행한다.</li><li>`git branch -M main`, `git push -u origin main`으로 올린다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-21">복사</button></div><pre id="lesson-code-21"><code>git status
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>GitHub에서 빈 저장소를 만들되 README 자동 생성은 끈다.</li><li>PowerShell에서 `git remote add origin ...`을 실행한다.</li><li>`git branch -M main`, `git push -u origin main`으로 올린다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-21">복사</button></div><pre id="lesson-code-21"><code>git status
 git add .
 git commit -m &quot;feat: build instructor home&quot;
 git branch -M main
 git remote add origin https://github.com/YOUR_ID/instructor-home.git
-git push -u origin main</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>status로 변경 파일을 확인하고 add·commit·push를 분리한다. 원격 URL의 YOUR_ID는 자신의 GitHub 주소로 바꾼다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>remote already exists</th><td>`git remote -v`로 주소를 확인하고 필요하면 `git remote set-url origin ...`을 사용한다.</td></tr><tr><th>push rejected</th><td>원격에 먼저 파일이 있는지 확인하고 pull 또는 새 빈 저장소를 사용한다.</td></tr><tr><th>로그인 실패</th><td>브라우저 인증 또는 GitHub Desktop을 사용하고 토큰을 코드에 적지 않는다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-21">복사</button></div><pre id="lesson-prompt-21"><code>Windows PowerShell에서 Vite 프로젝트를 GitHub에 올리는 순서를 초보자용으로 써 줘. 각 명령 뒤 확인할 결과와 비밀 파일 점검을 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>커밋 메시지에 목적을 쓰고 기능별로 작게 커밋한다.</li><li>학생은 README에 프로젝트 목표·사용 기술·실행 방법·배운 점을 정리한다.</li></ul>
+git push -u origin main</code></pre><div class="callout"><strong>코드 해설</strong><br>status로 변경 파일을 확인하고 add·commit·push를 분리한다. 원격 URL의 YOUR_ID는 자신의 GitHub 주소로 바꾼다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>remote already exists</th><td>`git remote -v`로 주소를 확인하고 필요하면 `git remote set-url origin ...`을 사용한다.</td></tr><tr><th>push rejected</th><td>원격에 먼저 파일이 있는지 확인하고 pull 또는 새 빈 저장소를 사용한다.</td></tr><tr><th>로그인 실패</th><td>브라우저 인증 또는 GitHub Desktop을 사용하고 토큰을 코드에 적지 않는다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-21">복사</button></div><pre id="lesson-prompt-21"><code>Windows PowerShell에서 Vite 프로젝트를 GitHub에 올리는 순서를 초보자용으로 써 줘. 각 명령 뒤 확인할 결과와 비밀 파일 점검을 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>커밋 메시지에 목적을 쓰고 기능별로 작게 커밋한다.</li><li>학생은 README에 프로젝트 목표·사용 기술·실행 방법·배운 점을 정리한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-22" class="lesson">
           <div class="lesson-kicker">차시 22</div><h2>Vercel로 배포하기</h2><p class="lead">GitHub 저장소를 Vercel 프로젝트와 연결하고 빌드 결과를 확인한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>Vercel에서 New Project로 GitHub 저장소를 선택한다.</p><small>실행 코드 시작: <code># Vercel 설정</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Deploy</strong><p>만든 웹 결과물을 인터넷 주소에서 사용할 수 있게 공개하는 과정입니다.</p><small>실습 장면: GitHub 저장소를 Vercel에 연결해 Preview와 Production을 만듭니다. · 확인 질문: 배포 후 어떤 URL과 로그를 확인해야 하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>Vercel에서 New Project로 GitHub 저장소를 선택한다.</p><small>실행 코드 시작: <code># Vercel 설정</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Deploy</strong><p>만든 웹 결과물을 인터넷 주소에서 사용할 수 있게 공개하는 과정입니다.</p><small>실습 장면: GitHub 저장소를 Vercel에 연결해 Preview와 Production을 만듭니다. · 확인 질문: 배포 후 어떤 URL과 로그를 확인해야 하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>deploy, build command, output directory, preview</span></div><div><b>오늘의 비유</b><span>학교 게시판에 완성본을 붙이는 마지막 전시 단계다. 먼저 시험 전시를 하고 공개한다.</span></div><div><b>완료 기준</b><span>배포 URL에서 소개·프로그램·실적·문의·AI 데모를 차례로 확인하고 Function 로그에 오류가 없는지 본다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>Vercel에서 New Project로 GitHub 저장소를 선택한다.</li><li>Build Command `npm run build`, Output Directory `dist`를 확인한다.</li><li>환경 변수를 넣고 Deploy를 실행한 뒤 Preview URL을 연다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-22">복사</button></div><pre id="lesson-code-22"><code># Vercel 설정
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>Vercel에서 New Project로 GitHub 저장소를 선택한다.</li><li>Build Command `npm run build`, Output Directory `dist`를 확인한다.</li><li>환경 변수를 넣고 Deploy를 실행한 뒤 Preview URL을 연다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-22">복사</button></div><pre id="lesson-code-22"><code># Vercel 설정
 Build Command: npm run build
 Output Directory: dist
-Environment Variables: OPENAI_API_KEY, OPENAI_MODEL, CONTACT_WEBHOOK_URL</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>Vite가 `dist`에 정적 결과물을 만들고 Vercel이 이를 배포한다. API 폴더는 Vercel Function으로 연결된다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>빌드 실패</th><td>Build log의 첫 오류와 Node 버전을 확인하고 로컬에서 `npm run build`를 먼저 실행한다.</td></tr><tr><th>404 새로 고침</th><td>정적 앵커 사이트인지 확인하고 Vercel 설정과 경로를 점검한다.</td></tr><tr><th>환경 변수 미반영</th><td>Preview/Production 환경을 구분하고 저장 후 재배포한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-22">복사</button></div><pre id="lesson-prompt-22"><code>GitHub 저장소를 Vercel에 연결하는 배포 안내를 작성해 줘. Vite 기준으로 빌드 명령·출력 폴더·환경 변수·배포 후 확인 순서를 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>Preview URL을 동료에게 보내 콘텐츠와 모바일 레이아웃을 검토받는다.</li><li>배포 전 체크리스트를 GitHub Issue 템플릿으로 만들어 반복 가능하게 한다.</li></ul>
+Environment Variables: OPENAI_API_KEY, OPENAI_MODEL, CONTACT_WEBHOOK_URL</code></pre><div class="callout"><strong>코드 해설</strong><br>Vite가 `dist`에 정적 결과물을 만들고 Vercel이 이를 배포한다. API 폴더는 Vercel Function으로 연결된다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>빌드 실패</th><td>Build log의 첫 오류와 Node 버전을 확인하고 로컬에서 `npm run build`를 먼저 실행한다.</td></tr><tr><th>404 새로 고침</th><td>정적 앵커 사이트인지 확인하고 Vercel 설정과 경로를 점검한다.</td></tr><tr><th>환경 변수 미반영</th><td>Preview/Production 환경을 구분하고 저장 후 재배포한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-22">복사</button></div><pre id="lesson-prompt-22"><code>GitHub 저장소를 Vercel에 연결하는 배포 안내를 작성해 줘. Vite 기준으로 빌드 명령·출력 폴더·환경 변수·배포 후 확인 순서를 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>Preview URL을 동료에게 보내 콘텐츠와 모바일 레이아웃을 검토받는다.</li><li>배포 전 체크리스트를 GitHub Issue 템플릿으로 만들어 반복 가능하게 한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-23" class="lesson">
           <div class="lesson-kicker">차시 23</div><h2>배포 로그와 회귀 수정</h2><p class="lead">배포 후 발생한 오류를 로그와 재현 단계로 좁히고 안전하게 수정한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>배포 URL에서 문제를 재현하고 시간과 화면을 기록한다.</p><small>실행 코드 시작: <code>git checkout -b fix/contact-status</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>HTTP 상태 코드</strong><p>요청이 성공했는지 실패했는지 알려 주는 숫자입니다.</p><small>실습 장면: 200 성공, 400 입력 오류, 500 서버 오류를 구분합니다. · 확인 질문: response.ok가 false일 때 어떤 안내를 보여 줄 것인가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>배포 URL에서 문제를 재현하고 시간과 화면을 기록한다.</p><small>실행 코드 시작: <code>git checkout -b fix/contact-status</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>HTTP 상태 코드</strong><p>요청이 성공했는지 실패했는지 알려 주는 숫자입니다.</p><small>실습 장면: 200 성공, 400 입력 오류, 500 서버 오류를 구분합니다. · 확인 질문: response.ok가 false일 때 어떤 안내를 보여 줄 것인가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>logs, rollback, regression, incident note</span></div><div><b>오늘의 비유</b><span>공연 리허설에서 문제가 생기면 배우를 탓하지 않고 장면과 큐를 다시 확인한다.</span></div><div><b>완료 기준</b><span>문제 재현→수정→로컬 build→Preview→Production 순서가 지켜졌는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>배포 URL에서 문제를 재현하고 시간과 화면을 기록한다.</li><li>Vercel Deployment의 Build log와 Function log를 분리해 본다.</li><li>수정 브랜치에서 고친 뒤 Preview를 확인하고 main에 반영한다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-23">복사</button></div><pre id="lesson-code-23"><code>git checkout -b fix/contact-status
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>배포 URL에서 문제를 재현하고 시간과 화면을 기록한다.</li><li>Vercel Deployment의 Build log와 Function log를 분리해 본다.</li><li>수정 브랜치에서 고친 뒤 Preview를 확인하고 main에 반영한다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-23">복사</button></div><pre id="lesson-code-23"><code>git checkout -b fix/contact-status
 # 문제를 재현하고 수정한 뒤
 git add .
 git commit -m &quot;fix: show contact error state&quot;
-git push -u origin fix/contact-status</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>빌드 오류는 배포 전 컴파일 단계, 함수 오류는 실행 중 요청 단계에서 생긴다. 둘을 나누면 수정 범위가 좁아진다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>로컬은 되는데 배포만 실패</th><td>환경 변수·Node 버전·경로 대소문자를 비교한다.</td></tr><tr><th>수정 후 다른 화면이 깨짐</th><td>공통 CSS 변경을 되돌아보고 모바일과 데스크톱을 함께 재검사한다.</td></tr><tr><th>롤백이 필요함</th><td>직전 정상 배포를 기준으로 원인을 기록하고 새 수정은 별도 커밋으로 남긴다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-23">복사</button></div><pre id="lesson-prompt-23"><code>Vercel 배포 장애를 학생이 보고할 수 있는 incident note 템플릿을 만들어 줘. 재현 조건, 로그, 영향 범위, 임시 조치, 다음 행동을 포함해 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>배포마다 짧은 release note를 남겨 무엇이 바뀌었는지 알 수 있게 한다.</li><li>학생 팀이 서로의 Preview URL을 테스트하고 한 가지 강점과 한 가지 오류를 기록한다.</li></ul>
+git push -u origin fix/contact-status</code></pre><div class="callout"><strong>코드 해설</strong><br>빌드 오류는 배포 전 컴파일 단계, 함수 오류는 실행 중 요청 단계에서 생긴다. 둘을 나누면 수정 범위가 좁아진다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>로컬은 되는데 배포만 실패</th><td>환경 변수·Node 버전·경로 대소문자를 비교한다.</td></tr><tr><th>수정 후 다른 화면이 깨짐</th><td>공통 CSS 변경을 되돌아보고 모바일과 데스크톱을 함께 재검사한다.</td></tr><tr><th>롤백이 필요함</th><td>직전 정상 배포를 기준으로 원인을 기록하고 새 수정은 별도 커밋으로 남긴다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-23">복사</button></div><pre id="lesson-prompt-23"><code>Vercel 배포 장애를 학생이 보고할 수 있는 incident note 템플릿을 만들어 줘. 재현 조건, 로그, 영향 범위, 임시 조치, 다음 행동을 포함해 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>배포마다 짧은 release note를 남겨 무엇이 바뀌었는지 알 수 있게 한다.</li><li>학생 팀이 서로의 Preview URL을 테스트하고 한 가지 강점과 한 가지 오류를 기록한다.</li></ul></details>
+          </div>
         </section>
 <section id="lesson-24" class="lesson">
           <div class="lesson-kicker">차시 24</div><h2>완성·발표·확장</h2><p class="lead">최종 홈페이지를 발표하고 다음 버전의 개선 아이디어를 우선순위로 정리한다.</p>
-          <div class="practice-preview"><b>실습 내용</b><p>최종 URL·GitHub·README·환경 변수·접근성 체크를 확인한다.</p><small>실행 코드 시작: <code>const releaseChecklist = [</code> · 전체 코드와 실행 결과는 다음 화면에서 이어집니다. 오른쪽 방향키를 눌러 보세요.</small></div>
-           <aside class="term-popover"><span>용어 미리보기</span><strong>Build</strong><p>개발 파일을 배포 가능한 결과물로 변환하는 과정입니다.</p><small>실습 장면: npm run build가 dist 폴더를 생성하는지 확인합니다. · 확인 질문: 빌드 오류와 실행 중 오류를 어떻게 구분하는가?</small></aside>
+          <div class="practice-preview"><b>실습 내용</b><p>최종 URL·GitHub·README·환경 변수·접근성 체크를 확인한다.</p><small>실행 코드 시작: <code>const releaseChecklist = [</code> · 전체 코드와 실행 결과는 아래 토글에서 이어집니다. 원하는 항목을 열어 보세요.</small></div>
+          <aside class="term-popover"><span>용어 미리보기</span><strong>Build</strong><p>개발 파일을 배포 가능한 결과물로 변환하는 과정입니다.</p><small>실습 장면: npm run build가 dist 폴더를 생성하는지 확인합니다. · 확인 질문: 빌드 오류와 실행 중 오류를 어떻게 구분하는가?</small></aside>
           <div class="info-grid"><div><b>핵심 개념</b><span>release checklist, rubric, reflection, iteration</span></div><div><b>오늘의 비유</b><span>전시회에는 작품뿐 아니라 작품 설명과 다음 전시 계획도 함께 붙인다.</span></div><div><b>완료 기준</b><span>다른 사람이 URL을 열어 핵심 메시지와 문의 행동을 30초 안에 찾는지 확인한다.</span></div></div>
-          <h3>실습 단계</h3><ol><li>최종 URL·GitHub·README·환경 변수·접근성 체크를 확인한다.</li><li>3분 발표에서 대상·문제·해결·다음 실험을 말한다.</li><li>개선 아이디어를 impact와 effort로 나누어 다음 작업을 고른다.</li></ol>
-          <div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-24">복사</button></div><pre id="lesson-code-24"><code>const releaseChecklist = [
+          <div class="lesson-chips" aria-label="차시 구성"><span>개념</span><span>실습</span><span>오류 해결</span><span>AI 프롬프트</span></div>
+          <div class="lesson-accordions">
+            <details class="lesson-toggle"><summary>실습 단계와 실행 코드</summary><ol><li>최종 URL·GitHub·README·환경 변수·접근성 체크를 확인한다.</li><li>3분 발표에서 대상·문제·해결·다음 실험을 말한다.</li><li>개선 아이디어를 impact와 effort로 나누어 다음 작업을 고른다.</li></ol><div class="code-head"><span>복사해 실행하거나 파일에 붙여 넣을 코드</span><button class="copy-button" type="button" data-copy-target="lesson-code-24">복사</button></div><pre id="lesson-code-24"><code>const releaseChecklist = [
   &quot;핵심 메시지가 5초 안에 읽힌다&quot;,
   &quot;모바일·프로젝터에서 가로 스크롤이 없다&quot;,
   &quot;문의 버튼은 44px 이상이고 중복 클릭을 막는다&quot;,
   &quot;API 키가 저장소에 없다&quot;,
   &quot;README에 실행·배포 방법이 있다&quot;,
 ];
-console.table(releaseChecklist.map((item) =&gt; ({ check: item, done: false })));</code></pre>
-          <div class="callout"><strong>코드 해설</strong><br>체크리스트는 기억을 대신하는 외부 메모리다. 완료 여부를 사람이 확인하고, 다음 버전은 한 번에 한두 가지 개선만 고른다.</div>
-          <h3>오류 해결</h3><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>발표 시간이 길어짐</th><td>문제·해결·증거·다음 실험 네 문장으로 줄인다.</td></tr><tr><th>개선 아이디어가 너무 많음</th><td>학습자에게 가장 큰 영향을 주는 한 가지부터 선택한다.</td></tr><tr><th>코드 설명이 어려움</th><td>파일·입력·변화·확인 결과 순서로 설명한다.</td></tr></tbody></table>
-          <h3>AI 협업 프롬프트</h3><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-24">복사</button></div><pre id="lesson-prompt-24"><code>24차시 프로젝트 발표용 3분 스크립트를 작성해 줘. 대상·문제·해결·AI 협업·검증·다음 개선을 포함하고 과장된 성과 표현은 빼 줘.</code></pre>
-          <h3>개선 아이디어와 응용</h3><ul><li>문의 저장 방식, 사례 상세 페이지, 예약 캘린더, 다국어, 분석 대시보드를 다음 단계 후보로 둔다.</li><li>학생은 최종 URL과 함께 ‘내가 직접 결정한 것’ 세 가지를 발표한다.</li></ul>
+console.table(releaseChecklist.map((item) =&gt; ({ check: item, done: false })));</code></pre><div class="callout"><strong>코드 해설</strong><br>체크리스트는 기억을 대신하는 외부 메모리다. 완료 여부를 사람이 확인하고, 다음 버전은 한 번에 한두 가지 개선만 고른다.</div></details>
+            <details class="lesson-toggle"><summary>오류 해결</summary><table><thead><tr><th>증상</th><th>해결 순서</th></tr></thead><tbody><tr><th>발표 시간이 길어짐</th><td>문제·해결·증거·다음 실험 네 문장으로 줄인다.</td></tr><tr><th>개선 아이디어가 너무 많음</th><td>학습자에게 가장 큰 영향을 주는 한 가지부터 선택한다.</td></tr><tr><th>코드 설명이 어려움</th><td>파일·입력·변화·확인 결과 순서로 설명한다.</td></tr></tbody></table></details>
+            <details class="lesson-toggle"><summary>AI 협업 프롬프트</summary><div class="code-head"><span>복사 가능한 프롬프트</span><button class="copy-button" type="button" data-copy-target="lesson-prompt-24">복사</button></div><pre id="lesson-prompt-24"><code>24차시 프로젝트 발표용 3분 스크립트를 작성해 줘. 대상·문제·해결·AI 협업·검증·다음 개선을 포함하고 과장된 성과 표현은 빼 줘.</code></pre></details>
+            <details class="lesson-toggle"><summary>개선 아이디어와 응용</summary><ul><li>문의 저장 방식, 사례 상세 페이지, 예약 캘린더, 다국어, 분석 대시보드를 다음 단계 후보로 둔다.</li><li>학생은 최종 URL과 함께 ‘내가 직접 결정한 것’ 세 가지를 발표한다.</li></ul></details>
+          </div>
         </section>
 <section><h2>부록 A · 전체 실행 코드</h2><p>아래 파일은 본문에서 만든 최종 프로젝트입니다. 별도 ZIP에서도 같은 파일을 제공하며, `npm install` 후 `npm run dev`로 실행합니다.</p><details><summary>package.json</summary><div class="code-head"><span>package.json</span><button class="copy-button" type="button" data-copy-target="source-1">복사</button></div><pre id="source-1"><code>{
   &quot;name&quot;: &quot;vibe-instructor-home&quot;,
@@ -886,8 +934,15 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
   };
 
   sourceSections.forEach(source => {
-    const groups = makeGroups(source);
     const sectionTitle = source.querySelector('h2')?.textContent?.trim() || '교재';
+    if (source.classList.contains('lesson')) {
+      const lessonPage = createPage(source, sectionTitle);
+      [...source.children].forEach(node => lessonPage.inner.append(node));
+      lessonPage.page.classList.remove('is-measuring');
+      pages.push(lessonPage.page);
+      return;
+    }
+    const groups = makeGroups(source);
     let current = createPage(source, sectionTitle);
     groups.forEach(group => {
       const previousCount = current.inner.children.length;
