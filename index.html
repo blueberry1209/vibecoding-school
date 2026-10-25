@@ -47,6 +47,11 @@ main { width: 100%; max-width: 100%; padding: 0 20px; }
 .lesson-toggle summary::after { content: '+'; float: right; color: var(--accent); font-size: 1.1rem; }
 .lesson-toggle[open] summary::after { content: '−'; }
 .lesson-toggle[open] { border-left-color: var(--teal); }
+.lesson-toggle[open] { position: fixed; z-index: 20; top: 72px; bottom: 16px; left: 50%; transform: translateX(-50%); width: min(920px, calc(100vw - 24px)); max-height: calc(100dvh - 88px); overflow: auto; box-shadow: 0 18px 50px rgba(64,61,88,.28); }
+.lesson-toggle[open] summary { position: sticky; top: 0; z-index: 2; background: #FFFFFF; border-bottom: 1px solid var(--line); }
+.lesson-toggle[open] > table { width: calc(100% - 24px); min-width: 0; }
+.lesson-overlay { position: fixed; inset: 0; z-index: 19; background: rgba(64,61,88,.32); }
+@media (max-width: 760px) { .lesson-toggle[open] { top: 56px; bottom: 10px; width: calc(100vw - 16px); max-height: calc(100dvh - 66px); } }
 .lesson-toggle > ol, .lesson-toggle > ul, .lesson-toggle > table, .lesson-toggle > .code-head, .lesson-toggle > pre, .lesson-toggle > .callout { margin-left: 12px; margin-right: 12px; }
 .lesson-toggle > ol, .lesson-toggle > ul { margin-top: 8px; margin-bottom: 8px; font-size: .88rem; line-height: 1.5; }
 .lesson-toggle .code-head { margin-top: 8px; }
@@ -981,8 +986,33 @@ GitHub 저장소에 올린 뒤 Vercel에서 `New Project`로 저장소를 선택
     pages.push(...[...host.querySelectorAll('.book-page')].filter(page => !pages.includes(page)));
   });
 
+  const lessonDetails = [...document.querySelectorAll('.lesson-toggle')];
+  const lessonOverlay = document.createElement('div');
+  lessonOverlay.className = 'lesson-overlay';
+  lessonOverlay.hidden = true;
+  document.body.append(lessonOverlay);
+  let openLessonDetail = null;
+  const closeLessonDetail = () => {
+    if (openLessonDetail) openLessonDetail.open = false;
+    openLessonDetail = null;
+    lessonOverlay.hidden = true;
+  };
+  lessonDetails.forEach(detail => detail.addEventListener('toggle', () => {
+    if (detail.open) {
+      lessonDetails.forEach(other => { if (other !== detail) other.open = false; });
+      openLessonDetail = detail;
+      lessonOverlay.hidden = false;
+    } else if (openLessonDetail === detail) {
+      openLessonDetail = null;
+      lessonOverlay.hidden = true;
+    }
+  }));
+  lessonOverlay.addEventListener('click', closeLessonDetail);
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLessonDetail(); });
+
   let currentIndex = 0;
   const showPage = (index, updateHash = true) => {
+    closeLessonDetail();
     currentIndex = Math.max(0, Math.min(index, pages.length - 1));
     pages.forEach((page, pageIndex) => {
       page.classList.toggle('is-active', pageIndex === currentIndex);
